@@ -3,8 +3,38 @@
 Optimized for ultra-low latency edge/cloud inference in pharmaceutical logistics.
 """
 
+import math
 import torch
 import torch.nn as nn
+
+
+class ExactAdaptiveAvgPool1d(nn.Module):
+    """
+    Exact mathematical equivalent of nn.AdaptiveAvgPool1d that exports cleanly to ONNX
+    regardless of whether input length is a factor of output length.
+    """
+
+    def __init__(self, output_size: int = 16):
+        super().__init__()
+        self.output_size = output_size
+        self._W_cache = {}
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        in_len = x.size(-1)
+        if in_len == self.output_size:
+            return x
+        if in_len % self.output_size == 0:
+            return torch.nn.functional.adaptive_avg_pool1d(x, self.output_size)
+
+        key = (in_len, self.output_size, str(x.device))
+        if key not in self._W_cache:
+            W = torch.zeros(in_len, self.output_size, dtype=x.dtype, device=x.device)
+            for i in range(self.output_size):
+                s = math.floor(i * in_len / self.output_size)
+                e = math.ceil((i + 1) * in_len / self.output_size)
+                W[s:e, i] = 1.0 / (e - s)
+            self._W_cache[key] = W
+        return torch.matmul(x, self._W_cache[key])
 
 
 class Tabular1DCNN(nn.Module):
@@ -20,7 +50,7 @@ class Tabular1DCNN(nn.Module):
             nn.Conv1d(in_channels=32, out_channels=64, kernel_size=3, padding=1),
             nn.BatchNorm1d(64),
             nn.ReLU(),
-            nn.AdaptiveAvgPool1d(output_size=16),
+            ExactAdaptiveAvgPool1d(output_size=16),
         )
         self.classifier = nn.Sequential(
             nn.Linear(64 * 16, 64),

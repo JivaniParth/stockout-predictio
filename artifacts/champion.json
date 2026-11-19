@@ -18,115 +18,115 @@
     }
   },
   "accuracy_champion": {
-    "model_name": "XGBoost",
-    "validation_score": 0.9168905726245723,
+    "model_name": "Tabular1DCNN",
+    "validation_score": 0.8629004407775995,
     "validation_metrics": {
-      "PR_AUC": 0.3588,
-      "Recall_Late": 0.928,
-      "Max_Min_Recall_Gap": 0.4406,
-      "Latency_P95": 0.34,
-      "Memory_MB": 0.05
+      "PR_AUC": 0.3929,
+      "Recall_Late": 0.9068,
+      "Max_Min_Recall_Gap": 0.4604,
+      "Latency_P95": 0.489,
+      "Memory_MB": 0.283
     },
     "post_selection_test_metrics": {
-      "PR_AUC": 0.4133912891480228,
-      "Recall_Late": 0.7412891833328863,
-      "Max_Min_Recall_Gap": 0.7746478873239436,
-      "Latency_P95": 0.34,
-      "Memory_MB": 0.05
+      "PR_AUC": 0.28041276982559576,
+      "Recall_Late": 0.8002636591512581,
+      "Max_Min_Recall_Gap": 0.536231884057971,
+      "Latency_P95": 0.489,
+      "Memory_MB": 0.283
     }
   },
   "edge_champion": {
-    "model_name": "XGBoost",
-    "validation_score": 0.9523420046108535,
+    "model_name": "Tabular1DCNN",
+    "validation_score": 0.892310934708088,
     "validation_metrics": {
-      "PR_AUC": 0.3588,
-      "Recall_Late": 0.928,
-      "Max_Min_Recall_Gap": 0.4406,
-      "Latency_P95": 0.34,
-      "Memory_MB": 0.05
+      "PR_AUC": 0.3929,
+      "Recall_Late": 0.9068,
+      "Max_Min_Recall_Gap": 0.4604,
+      "Latency_P95": 0.489,
+      "Memory_MB": 0.283
     },
     "post_selection_test_metrics": {
-      "PR_AUC": 0.4133912891480228,
-      "Recall_Late": 0.7412891833328863,
-      "Max_Min_Recall_Gap": 0.7746478873239436,
-      "Latency_P95": 0.34,
-      "Memory_MB": 0.05
+      "PR_AUC": 0.28041276982559576,
+      "Recall_Late": 0.8002636591512581,
+      "Max_Min_Recall_Gap": 0.536231884057971,
+      "Latency_P95": 0.489,
+      "Memory_MB": 0.283
     }
   },
   "all_model_validation_scores": {
     "LogisticRegression": {
-      "accuracy_score": 0.4486607142857141,
-      "edge_score": 0.6919005102040816,
+      "accuracy_score": 0.25,
+      "edge_score": 0.55,
       "validation_metrics": {
         "PR_AUC": 0.2869,
         "Recall_Late": 0.8602,
         "Max_Min_Recall_Gap": 0.4208,
-        "Latency_P95": 0.102,
+        "Latency_P95": 0.089,
         "Memory_MB": 0.001
       }
     },
     "RandomForest": {
-      "accuracy_score": 0.8652260104002044,
-      "edge_score": 0.8782413318309996,
+      "accuracy_score": 0.7463404732897985,
+      "edge_score": 0.7952446074991452,
       "validation_metrics": {
         "PR_AUC": 0.3584,
         "Recall_Late": 0.911,
         "Max_Min_Recall_Gap": 0.4505,
-        "Latency_P95": 2.421,
-        "Memory_MB": 0.073
+        "Latency_P95": 2.926,
+        "Memory_MB": 0.076
       }
     },
     "XGBoost": {
-      "accuracy_score": 0.9168905726245723,
-      "edge_score": 0.9523420046108535,
+      "accuracy_score": 0.6538276270081267,
+      "edge_score": 0.7855514792635817,
       "validation_metrics": {
-        "PR_AUC": 0.3588,
-        "Recall_Late": 0.928,
-        "Max_Min_Recall_Gap": 0.4406,
-        "Latency_P95": 0.34,
+        "PR_AUC": 0.3452,
+        "Recall_Late": 0.8983,
+        "Max_Min_Recall_Gap": 0.4208,
+        "Latency_P95": 0.379,
         "Memory_MB": 0.05
       }
     },
     "HybridLSTMTransformer": {
-      "accuracy_score": 0.3788275904354721,
-      "edge_score": 0.5880115287862162,
+      "accuracy_score": 0.5700522724480045,
+      "edge_score": 0.7063838259598252,
       "validation_metrics": {
-        "PR_AUC": 0.3349,
-        "Recall_Late": 0.8008,
-        "Max_Min_Recall_Gap": 0.901,
-        "Latency_P95": 0.72,
+        "PR_AUC": 0.3531,
+        "Recall_Late": 0.9068,
+        "Max_Min_Recall_Gap": 0.9604,
+        "Latency_P95": 1.323,
         "Memory_MB": 0.333
       }
     },
     "Tabular1DCNN": {
-      "accuracy_score": 0.8515375067392682,
-      "edge_score": 0.9126403089747197,
+      "accuracy_score": 0.8629004407775995,
+      "edge_score": 0.892310934708088,
       "validation_metrics": {
-        "PR_AUC": 0.352,
-        "Recall_Late": 0.9153,
+        "PR_AUC": 0.3929,
+        "Recall_Late": 0.9068,
         "Max_Min_Recall_Gap": 0.4604,
-        "Latency_P95": 0.192,
+        "Latency_P95": 0.489,
         "Memory_MB": 0.283
       }
     },
     "BiLSTM": {
-      "accuracy_score": 0.8424240822337725,
-      "edge_score": 0.8632710392101757,
+      "accuracy_score": 0.7940699647340874,
+      "edge_score": 0.8566260405570169,
       "validation_metrics": {
-        "PR_AUC": 0.3756,
-        "Recall_Late": 0.8686,
-        "Max_Min_Recall_Gap": 0.4802,
-        "Latency_P95": 1.036,
+        "PR_AUC": 0.3562,
+        "Recall_Late": 0.9237,
+        "Max_Min_Recall_Gap": 0.4901,
+        "Latency_P95": 1.125,
         "Memory_MB": 0.753
       }
     },
     "DeepTabularMLP": {
-      "accuracy_score": 0.3252064035701021,
-      "edge_score": 0.16569566325943674,
+      "accuracy_score": 0.7485039582080366,
+      "edge_score": 0.4719586136481251,
       "validation_metrics": {
-        "PR_AUC": 0.3549,
-        "Recall_Late": 0.7712,
-        "Max_Min_Recall_Gap": 0.8416,
+        "PR_AUC": 0.3564,
+        "Recall_Late": 0.9322,
+        "Max_Min_Recall_Gap": 0.4703,
         "Latency_P95": 12.0,
         "Memory_MB": 15.0
       }

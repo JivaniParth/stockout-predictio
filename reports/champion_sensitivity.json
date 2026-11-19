@@ -12,24 +12,24 @@
       "selection_rate_pct": 0.0
     },
     "XGBoost": {
-      "count": 56,
-      "selection_rate_pct": 93.33
+      "count": 0,
+      "selection_rate_pct": 0.0
     },
     "HybridLSTMTransformer": {
       "count": 0,
       "selection_rate_pct": 0.0
     },
     "Tabular1DCNN": {
-      "count": 0,
-      "selection_rate_pct": 0.0
+      "count": 47,
+      "selection_rate_pct": 78.33
     },
     "BiLSTM": {
-      "count": 4,
-      "selection_rate_pct": 6.67
+      "count": 6,
+      "selection_rate_pct": 10.0
     },
     "DeepTabularMLP": {
-      "count": 0,
-      "selection_rate_pct": 0.0
+      "count": 7,
+      "selection_rate_pct": 11.67
     }
   },
   "edge_champion_selection_frequencies": {
@@ -42,28 +42,28 @@
       "selection_rate_pct": 0.0
     },
     "XGBoost": {
-      "count": 150,
-      "selection_rate_pct": 100.0
+      "count": 0,
+      "selection_rate_pct": 0.0
     },
     "HybridLSTMTransformer": {
       "count": 0,
       "selection_rate_pct": 0.0
     },
     "Tabular1DCNN": {
-      "count": 0,
-      "selection_rate_pct": 0.0
+      "count": 123,
+      "selection_rate_pct": 82.0
     },
     "BiLSTM": {
-      "count": 0,
-      "selection_rate_pct": 0.0
+      "count": 24,
+      "selection_rate_pct": 16.0
     },
     "DeepTabularMLP": {
-      "count": 0,
-      "selection_rate_pct": 0.0
+      "count": 3,
+      "selection_rate_pct": 2.0
     }
   },
-  "accuracy_champion_stable": "XGBoost",
-  "edge_champion_stable": "XGBoost",
+  "accuracy_champion_stable": "Tabular1DCNN",
+  "edge_champion_stable": "Tabular1DCNN",
   "sample_grid_accuracy_trials": [
     {
       "weights": {
@@ -73,8 +73,8 @@
         "p95_latency": 0.275,
         "memory_mb": 0.275
       },
-      "champion": "XGBoost",
-      "score": 0.9537
+      "champion": "Tabular1DCNN",
+      "score": 0.9114
     },
     {
       "weights": {
@@ -84,8 +84,8 @@
         "p95_latency": 0.225,
         "memory_mb": 0.225
       },
-      "champion": "XGBoost",
-      "score": 0.9507
+      "champion": "Tabular1DCNN",
+      "score": 0.9066
     },
     {
       "weights": {
@@ -95,8 +95,8 @@
         "p95_latency": 0.175,
         "memory_mb": 0.175
       },
-      "champion": "XGBoost",
-      "score": 0.9477
+      "champion": "Tabular1DCNN",
+      "score": 0.9019
     },
     {
       "weights": {
@@ -106,8 +106,8 @@
         "p95_latency": 0.225,
         "memory_mb": 0.225
       },
-      "champion": "XGBoost",
-      "score": 0.9548
+      "champion": "Tabular1DCNN",
+      "score": 0.8787
     },
     {
       "weights": {
@@ -117,8 +117,8 @@
         "p95_latency": 0.175,
         "memory_mb": 0.175
       },
-      "champion": "XGBoost",
-      "score": 0.9519
+      "champion": "Tabular1DCNN",
+      "score": 0.874
     },
     {
       "weights": {
@@ -128,8 +128,8 @@
         "p95_latency": 0.125,
         "memory_mb": 0.125
       },
-      "champion": "XGBoost",
-      "score": 0.9489
+      "champion": "Tabular1DCNN",
+      "score": 0.8693
     },
     {
       "weights": {
@@ -139,8 +139,8 @@
         "p95_latency": 0.175,
         "memory_mb": 0.175
       },
-      "champion": "XGBoost",
-      "score": 0.956
+      "champion": "BiLSTM",
+      "score": 0.8531
     },
     {
       "weights": {
@@ -150,8 +150,8 @@
         "p95_latency": 0.125,
         "memory_mb": 0.125
       },
-      "champion": "XGBoost",
-      "score": 0.953
+      "champion": "BiLSTM",
+      "score": 0.8471
     },
     {
       "weights": {
@@ -161,8 +161,8 @@
         "p95_latency": 0.075,
         "memory_mb": 0.075
       },
-      "champion": "XGBoost",
-      "score": 0.9501
+      "champion": "BiLSTM",
+      "score": 0.8411
     },
     {
       "weights": {
@@ -172,8 +172,8 @@
         "p95_latency": 0.125,
         "memory_mb": 0.125
       },
-      "champion": "XGBoost",
-      "score": 0.9571
+      "champion": "BiLSTM",
+      "score": 0.8482
     }
   ],
   "sample_grid_edge_trials": [
@@ -185,8 +185,8 @@
         "pr_auc": 0.1,
         "equity_gap": 0.71
       },
-      "champion": "XGBoost",
-      "score": 0.9513
+      "champion": "Tabular1DCNN",
+      "score": 0.8939
     },
     {
       "weights": {
@@ -196,8 +196,8 @@
         "pr_auc": 0.2,
         "equity_gap": 0.61
       },
-      "champion": "XGBoost",
-      "score": 0.9365
+      "champion": "Tabular1DCNN",
+      "score": 0.9013
     },
     {
       "weights": {
@@ -207,8 +207,8 @@
         "pr_auc": 0.1,
         "equity_gap": 0.61
       },
-      "champion": "XGBoost",
-      "score": 0.9554
+      "champion": "DeepTabularMLP",
+      "score": 0.8696
     },
     {
       "weights": {
@@ -218,8 +218,8 @@
         "pr_auc": 0.2,
         "equity_gap": 0.51
       },
-      "champion": "XGBoost",
-      "score": 0.9406
+      "champion": "Tabular1DCNN",
+      "score": 0.8733
     },
     {
       "weights": {
@@ -229,8 +229,8 @@
         "pr_auc": 0.1,
         "equity_gap": 0.51
       },
-      "champion": "XGBoost",
-      "score": 0.9596
+      "champion": "DeepTabularMLP",
+      "score": 0.8788
     },
     {
       "weights": {
@@ -240,8 +240,8 @@
         "pr_auc": 0.2,
         "equity_gap": 0.41
       },
-      "champion": "XGBoost",
-      "score": 0.9447
+      "champion": "DeepTabularMLP",
+      "score": 0.8535
     },
     {
       "weights": {
@@ -251,8 +251,8 @@
         "pr_auc": 0.1,
         "equity_gap": 0.68
       },
-      "champion": "XGBoost",
-      "score": 0.9525
+      "champion": "Tabular1DCNN",
+      "score": 0.8956
     },
     {
       "weights": {
@@ -262,8 +262,8 @@
         "pr_auc": 0.2,
         "equity_gap": 0.58
       },
-      "champion": "XGBoost",
-      "score": 0.9376
+      "champion": "Tabular1DCNN",
+      "score": 0.9029
     },
     {
       "weights": {
@@ -273,8 +273,8 @@
         "pr_auc": 0.1,
         "equity_gap": 0.58
       },
-      "champion": "XGBoost",
-      "score": 0.9566
+      "champion": "Tabular1DCNN",
+      "score": 0.8676
     },
     {
       "weights": {
@@ -284,8 +284,8 @@
         "pr_auc": 0.2,
         "equity_gap": 0.48
       },
-      "champion": "XGBoost",
-      "score": 0.9418
+      "champion": "Tabular1DCNN",
+      "score": 0.875
     }
   ]
 }
