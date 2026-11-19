@@ -29,6 +29,22 @@ class WeightedBCELoss(nn.Module):
         return torch.mean(loss)
 
 
+class UnweightedBCELoss(nn.Module):
+    """
+    Numerically stable AMP-safe Unweighted Binary Cross-Entropy Loss with epsilon clamping.
+    """
+
+    def __init__(self, eps: float = 1e-7):
+        super().__init__()
+        self.eps = eps
+
+    def forward(self, y_pred: torch.Tensor, y_true: torch.Tensor) -> torch.Tensor:
+        y_pred = torch.clamp(y_pred.float(), self.eps, 1.0 - self.eps)
+        y_true = y_true.float()
+        loss = -(y_true * torch.log(y_pred) + (1.0 - y_true) * torch.log(1.0 - y_pred))
+        return torch.mean(loss)
+
+
 class FocalLoss(nn.Module):
     """
     Binary Focal Loss: down-weights easy negatives to focus gradients on hard late-delivery consignments.
@@ -56,7 +72,7 @@ def get_loss_function(variant: str = "weighted_bce", pos_weight: float = 6.0, al
     if variant in ["weighted_bce", "weighted"]:
         return WeightedBCELoss(pos_weight=pos_weight)
     elif variant in ["unweighted_bce", "bce"]:
-        return nn.BCELoss()
+        return UnweightedBCELoss()
     elif variant in ["focal", "focal_loss"]:
         return FocalLoss(alpha=alpha, gamma=gamma)
     elif variant in ["binary_focal", "binary_focal_loss"]:

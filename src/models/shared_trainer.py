@@ -105,7 +105,7 @@ class SharedTrainer:
             if self.use_amp:
                 with torch.amp.autocast("cuda"):
                     y_pred = self.model(X_batch)
-                    loss = self.criterion(y_pred, y_batch)
+                    loss = self.criterion(y_pred.float(), y_batch.float())
                 self.scaler.scale(loss).backward()
                 if self.gradient_clip > 0:
                     self.scaler.unscale_(self.optimizer)
@@ -114,7 +114,7 @@ class SharedTrainer:
                 self.scaler.update()
             else:
                 y_pred = self.model(X_batch)
-                loss = self.criterion(y_pred, y_batch)
+                loss = self.criterion(y_pred.float(), y_batch.float())
                 loss.backward()
                 if self.gradient_clip > 0:
                     torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=self.gradient_clip)
@@ -139,10 +139,10 @@ class SharedTrainer:
                 if self.use_amp:
                     with torch.amp.autocast("cuda"):
                         y_pred = self.model(X_batch)
-                        loss = self.criterion(y_pred, y_batch)
+                        loss = self.criterion(y_pred.float(), y_batch.float())
                 else:
                     y_pred = self.model(X_batch)
-                    loss = self.criterion(y_pred, y_batch)
+                    loss = self.criterion(y_pred.float(), y_batch.float())
 
                 total_loss += loss.item() * len(X_batch)
                 all_preds.extend(y_pred.cpu().numpy().flatten())
