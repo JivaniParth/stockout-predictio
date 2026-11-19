@@ -1,0 +1,34 @@
+{
+  "budget": {
+    "n_trials_per_class": 100,
+    "objective": "2014 Validation PR-AUC",
+    "device_neural": "cuda",
+    "device_gbdt": "CPU (LightGBM OpenMP)"
+  },
+  "LightGBM_GBDT": {
+    "best_val_pr_auc": 0.485082332139372,
+    "best_params": {
+      "lr": 0.040913567679008486,
+      "leaves": 61,
+      "subsample": 0.8632683795194115,
+      "colsample_bytree": 0.9037306741009001,
+      "reg_alpha": 0.002123178387828755,
+      "reg_lambda": 0.001552589999975443,
+      "scale_pos_weight": 1.3548498438686294
+    },
+    "n_trials": 100
+  },
+  "TabResNet_Neural": {
+    "best_val_pr_auc": 0.40336029627174014,
+    "best_params": {
+      "hidden_dim": 64,
+      "num_blocks": 3,
+      "dropout_rate": 0.11348549234954104,
+      "lr": 0.002972634089460481,
+      "weight_decay": 0.0010368329898987419,
+      "scale_pos_weight": 5.587415950392273
+    },
+    "n_trials": 100
+  },
+  "headroom_delta_pr_auc": 0.08172203586763188
+}

@@ -267,3 +267,18 @@ To explore whether advanced neural architectures can overcome the classical indu
 1. **Closing the Inductive Bias Gap via Distillation:** Distilling soft probability labels from a GBDT ensemble into a TabResNet student with focal loss achieves **0.3942 Val PR-AUC**, bringing the neural model within a narrow, statistically indistinguishable **1.17 percentage point margin** of the pure GBDT champion (paired bootstrap 95% CI: $[-0.0385, +0.0150]$).
 2. **Computational & Deployment Efficiency:** Distilled TabResNet retains the compact forward pass of TabResNet ($54,641$ parameters, $0.32\text{ ms}$ P50 latency on CPU), because the GBDT teacher is used solely during training and completely discarded for deployment.
 3. **Comprehensive Audit Documentation:** Detailed architectural schemas, 4-fold cross-validation tables, 5-seed variance logs, and health equity parity audits are permanently recorded in [`reports/deep_learning_benchmarks.md`](file:///reports/deep_learning_benchmarks.md).
+
+
+## 10. Tabular Deep Learning Benchmarks (FT-Transformer & Distilled TabResNet)
+
+Following systematic performance ladder enhancements, modern tabular deep learning architectures were benchmarked across 4 expanding-window CV folds and 5 seeds on the 2014 Validation confirmation set using native feature tokenization (67 features: 57 continuous + 10 categoricals):
+
+| Architecture | Expanding CV PR-AUC | 2014 Val PR-AUC (Mean ± Std) | Ensemble PR-AUC | PR-AUC 95% Bootstrap CI | Recall @ tau* | F1 @ tau* | ROC-AUC |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Baseline DeepTabularMLP** | 0.2564 ± 0.0986 | 0.3690 ± 0.0080 | **0.3742** | [0.3236, 0.4318] | 0.9280 | 0.5029 | 0.8333 |
+| **Baseline BiLSTM** | 0.2478 ± 0.0972 | 0.3650 ± 0.0121 | **0.3744** | [0.3197, 0.4336] | 0.9364 | 0.4841 | 0.8241 |
+| **TabResNet** | 0.2953 ± 0.0896 | 0.3712 ± 0.0177 | **0.3745** | [0.3276, 0.4303] | 0.9153 | 0.5118 | 0.8375 |
+| **FT-Transformer** | 0.2522 ± 0.1071 | 0.3339 ± 0.0147 | **0.3473** | [0.2947, 0.4110] | 0.6695 | 0.4401 | 0.7911 |
+| **Attentive TabResNet** | 0.2495 ± 0.1142 | 0.3396 ± 0.0104 | **0.3401** | [0.2980, 0.3941] | 0.9407 | 0.5000 | 0.8194 |
+| **Distilled TabResNet** | 0.3117 ± 0.0672 | 0.3828 ± 0.0169 | **0.3871** | [0.3352, 0.4478] | 0.7246 | 0.5059 | 0.8347 |
+| **GBDT Champion Reference** | 0.2557 ± 0.0766 | 0.3582 ± 0.0165 | **0.3648** | [0.3118, 0.4216] | 0.6483 | 0.4643 | 0.8097 |

@@ -25,21 +25,38 @@ from sklearn.metrics import (
 )
 
 
-def load_tiers_config(tiers_yaml_path: Union[str, Path]) -> Tuple[Dict[str, str], str]:
+def load_tiers_config(tiers_yaml_path: Optional[Union[str, Path]] = None) -> Tuple[Dict[str, str], str]:
     """
     Loads tier mapping and documented criterion from config/tiers.yaml.
     Stops with explicit FileNotFoundError if the file is absent.
     """
-    path = Path(tiers_yaml_path)
-    if not path.exists():
-        alt_path = Path("config/tiers.yaml")
-        if alt_path.exists():
-            path = alt_path
+    if tiers_yaml_path is None:
+        candidate_paths = [
+            Path("config/tiers.yaml"),
+            Path("Implementation/config/tiers.yaml"),
+            Path(__file__).resolve().parent.parent.parent / "config" / "tiers.yaml",
+        ]
+        for cp in candidate_paths:
+            if cp.exists():
+                path = cp
+                break
         else:
-            raise FileNotFoundError(
-                f"Tiers configuration file is missing at '{tiers_yaml_path}'! "
-                "Do not invent criteria without user confirmation."
-            )
+            raise FileNotFoundError("config/tiers.yaml could not be found.")
+    else:
+        path = Path(tiers_yaml_path)
+        if not path.exists():
+            alt_path = Path("config/tiers.yaml")
+            if alt_path.exists():
+                path = alt_path
+            else:
+                alt2 = Path(__file__).resolve().parent.parent.parent / "config" / "tiers.yaml"
+                if alt2.exists():
+                    path = alt2
+                else:
+                    raise FileNotFoundError(
+                        f"Tiers configuration file is missing at '{tiers_yaml_path}'! "
+                        "Do not invent criteria without user confirmation."
+                    )
 
     with open(path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
