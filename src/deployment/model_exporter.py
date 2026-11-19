@@ -58,6 +58,7 @@ def export_pytorch_artifacts(
     """Exports PyTorch model to TorchScript and ONNX, verifying parity < 1e-4."""
     artifacts_dir = Path(artifacts_dir)
     artifacts_dir.mkdir(parents=True, exist_ok=True)
+    model = model.cpu()
     model.eval()
 
     torch_tensor = torch.tensor(sample_input[:10], dtype=torch.float32)

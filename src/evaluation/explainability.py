@@ -78,10 +78,11 @@ def explain_neural_model_shap(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     model.eval()
+    device = next(model.parameters()).device
 
     def predict_fn(x_numpy: np.ndarray) -> np.ndarray:
         with torch.no_grad():
-            tensor = torch.tensor(x_numpy, dtype=torch.float32)
+            tensor = torch.tensor(x_numpy, dtype=torch.float32, device=device)
             out = model(tensor).cpu().numpy().flatten()
             return out
 
@@ -120,9 +121,10 @@ def visualize_attention_weights(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     model.eval()
+    device = next(model.parameters()).device
 
     with torch.no_grad():
-        tensor = torch.tensor(X_sample[:20], dtype=torch.float32)
+        tensor = torch.tensor(X_sample[:20], dtype=torch.float32, device=device)
 
         if isinstance(model, HybridLSTMTransformer):
             tokens = model.token_proj(tensor).view(tensor.size(0), model.seq_len, model.embed_dim)
