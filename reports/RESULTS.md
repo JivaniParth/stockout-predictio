@@ -1,7 +1,7 @@
 # Empirical Research Benchmark & Verification Report
 
-**Audit Timestamp:** 2026-11-17T13:37:48Z | **Platform:** Windows 11 (10.0.26300)
-**Python Runtime:** 3.14.6 | **PyTorch:** 2.13.0+cpu
+**Audit Timestamp:** 2026-11-19T11:24:15Z | **Platform:** Windows 11 (10.0.26300)
+**Python Runtime:** 3.12.10 | **PyTorch:** 2.6.0+cu124
 
 ---
 
@@ -37,15 +37,15 @@
 
 ## 3. Prospective Test Model Comparison with Multi-Seed Std & 95% Bootstrap CIs
 
-| Model                 |   Tau_Star |   Recall_Mean |   Recall_Std | Recall_CI      |   Precision_Mean |   Precision_Std |   F1_Mean |     F1_Std | F1_CI          |   PR_AUC_Mean |   PR_AUC_Std | PR_AUC_CI      |   ROC_AUC_Mean |   ROC_AUC_Std | ROC_AUC_CI     |   Accuracy_Mean |   Brier_Score |   ECE_15Bin |   DeLong_p_adj |   McNemar_p_adj |
-|:----------------------|-----------:|--------------:|-------------:|:---------------|-----------------:|----------------:|----------:|-----------:|:---------------|--------------:|-------------:|:---------------|---------------:|--------------:|:---------------|----------------:|--------------:|------------:|---------------:|----------------:|
-| LogisticRegression    |       0.46 |      0.742092 |    0.0391771 | [0.667, 0.817] |         0.203243 |       0.0188547 |  0.318723 | 0.0251041  | [0.270, 0.368] |      0.267195 |    0.0364951 | [0.199, 0.342] |       0.723772 |     0.0239045 | [0.677, 0.773] |        0.62603  |      0.207858 |   0.270724  |    2.24897e-07 |     2.33147e-15 |
-| RandomForest          |       0.45 |      0.800555 |    0.0348012 | [0.727, 0.865] |         0.281628 |       0.0236743 |  0.416184 | 0.0280849  | [0.359, 0.470] |      0.336116 |    0.0402543 | [0.258, 0.420] |       0.787699 |     0.0233043 | [0.741, 0.833] |        0.735335 |      0.128492 |   0.170485  |    0.10868     |     1           |
-| XGBoost               |       0.35 |      0.741289 |    0.040376  | [0.661, 0.822] |         0.277018 |       0.0246695 |  0.402827 | 0.0295292  | [0.346, 0.459] |      0.413391 |    0.0455262 | [0.325, 0.500] |       0.807707 |     0.0216331 | [0.764, 0.850] |        0.741043 |      0.111717 |   0.115993  |    1           |     1           |
-| HybridLSTMTransformer |       0.3  |      0.783283 |    0.0351979 | [0.706, 0.857] |         0.258293 |       0.022619  |  0.388018 | 0.0152714  | [0.333, 0.441] |      0.273837 |    0.0190184 | [0.208, 0.343] |       0.735965 |     0.0245607 | [0.685, 0.785] |        0.708794 |      0.164384 |   0.176275  |    2.24897e-07 |     0.0242039   |
-| Tabular1DCNN          |       0.36 |      0.783711 |    0.0265623 | [0.704, 0.857] |         0.246249 |       0.0220366 |  0.374298 | 0.00416609 | [0.318, 0.426] |      0.279502 |    0.0141293 | [0.213, 0.349] |       0.762929 |     0.0221347 | [0.721, 0.806] |        0.691174 |      0.131078 |   0.182722  |    0.00716527  |     6.42791e-05 |
-| BiLSTM                |       0.41 |      0.67588  |    0.0547723 | [0.598, 0.757] |         0.274459 |       0.0253223 |  0.389867 | 0.0111497  | [0.328, 0.448] |      0.274502 |    0.0165317 | [0.210, 0.342] |       0.774808 |     0.0203954 | [0.732, 0.816] |        0.750763 |      0.116873 |   0.109804  |    0.0906466   |     1           |
-| DeepTabularMLP        |       0.11 |      0.732765 |    0.0351979 | [0.653, 0.810] |         0.268311 |       0.0238835 |  0.392295 | 0.00666188 | [0.335, 0.447] |      0.265544 |    0.0158842 | [0.207, 0.330] |       0.752178 |     0.0250697 | [0.699, 0.799] |        0.732503 |      0.112338 |   0.0935448 |    0.000449183 |     1           |
+| Model | Tau_Star | Recall_Mean | Recall_Std | Recall_CI | Precision_Mean | Precision_Std | F1_Mean | F1_Std | F1_CI | PR_AUC_Mean | PR_AUC_Std | PR_AUC_CI | ROC_AUC_Mean | ROC_AUC_Std | ROC_AUC_CI | Accuracy_Mean | Brier_Score | ECE_15Bin | DeLong_p_adj | McNemar_p_adj |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| LogisticRegression | 0.45999999999999996 | 0.7420919975110578 | 0.039177118356686136 | [0.667, 0.817] | 0.2032429590918523 | 0.018854667645396533 | 0.31872272086037867 | 0.02510411176369524 | [0.270, 0.368] | 0.26719500902736365 | 0.03649514139653916 | [0.199, 0.342] | 0.7237724792245089 | 0.023904498792841268 | [0.677, 0.773] | 0.6260304818092429 | 0.20785796069644447 | 0.270724480253129 | 5.049288789682471e-05 | 0.0 |
+| RandomForest | 0.45000000000000007 | 0.8005548245203125 | 0.03480122619756109 | [0.727, 0.865] | 0.28162767192415383 | 0.0236742927749956 | 0.4161837522937667 | 0.0280849068590406 | [0.359, 0.470] | 0.3361160959476511 | 0.04025432445811144 | [0.258, 0.420] | 0.7876989115279573 | 0.023304268513582062 | [0.741, 0.833] | 0.7353352999016716 | 0.128492196629088 | 0.17048500097811922 | 1.0 | 0.0945845669726666 |
+| XGBoost | 0.41000000000000003 | 0.6522693868969012 | 0.04243919956733011 | [0.568, 0.733] | 0.2772640868796765 | 0.02599684328673978 | 0.38857845945129177 | 0.030233708306098554 | [0.326, 0.443] | 0.368836273189408 | 0.04402520014040561 | [0.283, 0.455] | 0.786970950171277 | 0.022717741772741957 | [0.739, 0.830] | 0.7581819075712881 | 0.12204897403717041 | 0.13421692922638112 | 1.0 | 1.0 |
+| HybridLSTMTransformer | 0.19 | 0.8000802529989821 | 0.039581140290126396 | [0.729, 0.868] | 0.260880552175406 | 0.022187149902901583 | 0.3930079883705954 | 0.004028936799513991 | [0.336, 0.446] | 0.25648949325134307 | 0.012033290394839016 | [0.202, 0.316] | 0.7525348477970281 | 0.02388779199461071 | [0.701, 0.799] | 0.7087522123893805 | 0.14390285313129425 | 0.1366228464708802 | 0.03181132298731626 | 0.0002503833546751988 |
+| Tabular1DCNN | 0.43000000000000005 | 0.79186575866964 | 0.03613247231446467 | [0.717, 0.865] | 0.2520094898497441 | 0.022218373608316605 | 0.3818870847565719 | 0.004842951118182291 | [0.326, 0.433] | 0.2780619476570114 | 0.022530069177750342 | [0.213, 0.344] | 0.768687884003731 | 0.022654087703403998 | [0.724, 0.812] | 0.6978957718780727 | 0.1500956118106842 | 0.22695073862665407 | 0.6020854689653357 | 8.643075372072317e-06 |
+| BiLSTM | 0.35 | 0.7496827614574814 | 0.05201495511442411 | [0.676, 0.826] | 0.2621125335953673 | 0.023209794374273035 | 0.38793869084914456 | 0.006797810563971769 | [0.332, 0.445] | 0.2664999835787113 | 0.009513821072745511 | [0.206, 0.328] | 0.7723067897450696 | 0.02068703448447881 | [0.732, 0.812] | 0.7212507374631268 | 0.11742613464593887 | 0.1113809069019679 | 0.8528427661181008 | 0.006635878791650285 |
+| DeepTabularMLP | 0.49 | 0.750184236067853 | 0.03188521078284831 | [0.681, 0.829] | 0.2654530189064932 | 0.022997787117811478 | 0.3916632936933809 | 0.0035589063800185675 | [0.336, 0.446] | 0.225871508224424 | 0.015578169934429807 | [0.178, 0.278] | 0.7427402602270144 | 0.022577978912501927 | [0.696, 0.788] | 0.7254070796460178 | 0.1293172985315323 | 0.11454240412926603 | 0.007724553294402803 | 0.018774177263180758 |
 
 ---
 
@@ -53,13 +53,6 @@
 
 | Model Architecture | Raw ECE (15-Bin) | Raw Brier | Platt ECE | Platt Brier | Isotonic ECE | Isotonic Brier | Raw tau* | Calibrated tau* |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **LogisticRegression** | 0.2707 | 0.2079 | 0.0485 | 0.0993 | 0.0672 | 0.1018 | 0.46 | 0.17 |
-| **RandomForest** | 0.1705 | 0.1285 | 0.0248 | 0.0894 | 0.0389 | 0.0912 | 0.45 | 0.26 |
-| **XGBoost** | 0.1160 | 0.1117 | 0.0211 | 0.0862 | 0.0510 | 0.0906 | 0.35 | 0.26 |
-| **HybridLSTMTransformer** | 0.1763 | 0.1644 | 0.0408 | 0.0975 | 0.0463 | 0.1010 | 0.30 | 0.21 |
-| **Tabular1DCNN** | 0.1827 | 0.1311 | 0.0322 | 0.0956 | 0.0387 | 0.0951 | 0.36 | 0.17 |
-| **BiLSTM** | 0.1098 | 0.1169 | 0.0379 | 0.0948 | 0.0416 | 0.0941 | 0.41 | 0.22 |
-| **DeepTabularMLP** | 0.0935 | 0.1123 | 0.0332 | 0.0952 | 0.0436 | 0.0970 | 0.11 | 0.24 |
 
 ---
 
@@ -68,38 +61,43 @@
 ### 5.1 Validation-Only Champion Selection Scoring
 > **Methodological Rule:** Champions are selected and scored **strictly on 2014 validation metrics** (Val PR-AUC, Val Recall at calibrated tau*, Val Max-Min Recall Gap) combined with measured QoS (Latency, Memory). Prospective 2015+ test metrics are attached post-selection strictly for reporting.
 
-- **Accuracy Champion:** `XGBoost` (Validation Score: `0.9169`)
-- **Edge Champion:** `XGBoost` (Validation Score: `0.9523`)
+- **Accuracy Champion:** `BiLSTM` (Validation Score: `0.8916`)
+- **Edge Champion:** `BiLSTM` (Validation Score: `0.9054`)
 
 ### 5.2 MAUT Weight Sensitivity Grid Sweep
 - **Total Grid Evaluations:** 60 Accuracy configurations, 150 Edge configurations.
-- **Most Stable Accuracy Champion:** `XGBoost` (93.33% of grid evaluations).
-- **Most Stable Edge Champion:** `XGBoost` (100.0% of grid evaluations).
+- **Most Stable Accuracy Champion:** `DeepTabularMLP` (41.67% of grid evaluations).
+- **Most Stable Edge Champion:** `BiLSTM` (63.33% of grid evaluations).
 
 ---
 
 ## 6. Cloud Serving QoS, Micro-Benchmarks & Horizontal Scaling
 
-### 6.1 Hardware Isolation
-- **Server Hardware:** Intel64 Family 6 Model 186 Stepping 2, GenuineIntel | 8 physical cores / 12 logical cores | 15.64 GB RAM | GPU: None (CPU Execution)
+### 6.1 Hardware Isolation & Acceleration Profile
+- **Server Hardware:** Intel64 Family 6 Model 186 Stepping 2, GenuineIntel | 8 physical cores / 12 logical cores | 15.64 GB RAM
+- **PyTorch Execution Device:** `cuda` (NVIDIA GeForce RTX 4050 Laptop GPU)
+- **XGBoost Execution Hardware:** `cuda`
+- **CatBoost Execution Hardware:** `GPU`
+- **LightGBM Execution Hardware:** `cpu (12 threads)` (Multi-core CPU (Prebuilt wheel lacks OpenCL/CUDA tree learner))
+- **Resilience Guarantee:** All model suites implement automated try-except fallback to multi-core CPU parallel execution on any GPU allocation/driver exception.
 - **Client Harness:** In-Process Async ThreadPool & HTTP TestClient | Max Threads: 64
 
 ### 6.2 Cache Hit vs. Cache Miss Latency Breakdown
 | Evaluation Mode | Payloads Tested | Latency P50 (ms) | Latency P90 (ms) | Latency P95 (ms) | Latency P99 (ms) | Cache Hit Rate |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Cache Miss (Unique Payloads)** | 100 | 30.066 ms | 35.709 ms | 36.754 ms | 39.125 ms | 0.0% |
-| **Cache Hit (Warm Repeated)** | 100 | 3.469 ms | 4.203 ms | 4.326 ms | 4.839 ms | 100.0% |
+| **Cache Miss (Unique Payloads)** | 100 | 0.022 ms | 0.026 ms | 0.033 ms | 0.647 ms | 0.0% |
+| **Cache Hit (Warm Repeated)** | 100 | 0.019 ms | 0.021 ms | 0.022 ms | 0.028 ms | 100.0% |
 
 ### 6.3 Isolated Model In-Process Micro-Benchmarks (500 iterations, excluding HTTP framework)
 | Model Architecture | Parameter Count | Serialized Size (KB) | Latency P50 (ms) | Latency P95 (ms) | RSS Delta (MB) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Tabular1DCNN** | 72,321 | 289.66 KB | 0.221 ms | 0.489 ms | 0.0 MB |
-| **HybridLSTMTransformer** | 84,290 | 341.36 KB | 0.695 ms | 1.323 ms | 0.0 MB |
-| **BiLSTM** | 195,138 | 771.45 KB | 0.611 ms | 1.125 ms | 0.0 MB |
-| **ResMLP** | 213,441 | 842.95 KB | 0.323 ms | 0.683 ms | 0.0 MB |
-| **XGBoost** | 1,800 | 50.93 KB | 0.312 ms | 0.379 ms | 0.0 MB |
-| **RandomForest** | 808 | 78.08 KB | 2.163 ms | 2.926 ms | 0.016 MB |
-| **LogisticRegression** | 37 | 0.89 KB | 0.062 ms | 0.089 ms | 0.0 MB |
+| **Tabular1DCNN** | 72,321 | 289.34 KB | 0.508 ms | 0.632 ms | 0.0 MB |
+| **HybridLSTMTransformer** | 84,290 | 341.04 KB | 2.096 ms | 2.283 ms | 0.0 MB |
+| **BiLSTM** | 195,138 | 771.12 KB | 2.145 ms | 2.42 ms | 0.0 MB |
+| **ResMLP** | 213,441 | 842.63 KB | 0.965 ms | 1.128 ms | 0.0 MB |
+| **XGBoost** | 1,800 | 50.96 KB | 0.217 ms | 0.312 ms | 0.016 MB |
+| **RandomForest** | 808 | 79.29 KB | 1.681 ms | 2.359 ms | 0.004 MB |
+| **LogisticRegression** | 37 | 0.93 KB | 0.058 ms | 0.086 ms | 0.0 MB |
 
 ### 6.4 Multi-Worker Uvicorn Scaling Analysis
 | Worker Count | Target Concurrency | Throughput (req/s) | Latency P95 (ms) | Scaling Efficiency | Architectural Status |
@@ -114,15 +112,15 @@
 
 ## 7. 5-Seed Ablation Study & Statistical Significance (N=120 Positives)
 
-| Ablation_Setting                              |   Threshold_Mean |   Recall_Late_Mean |   Recall_Late_Std |   Precision_Late_Mean |   Precision_Late_Std |   F1_Late_Mean |   F1_Late_Std |   PR_AUC_Mean |   PR_AUC_Std |   ROC_AUC_Mean |   ROC_AUC_Std |   Accuracy_Mean |   Accuracy_Std |   Delta_PR_AUC_Mean | Delta_PR_AUC_95CI   |   Delta_F1_Mean | Delta_F1_95CI     |   Delta_Recall_Mean | Delta_Recall_95CI   | Statistically_Distinguishable   |   Input_Dim |   Seeds_Count |
-|:----------------------------------------------|-----------------:|-------------------:|------------------:|----------------------:|---------------------:|---------------:|--------------:|--------------:|-------------:|---------------:|--------------:|----------------:|---------------:|--------------------:|:--------------------|----------------:|:------------------|--------------------:|:--------------------|:--------------------------------|------------:|--------------:|
-| Full_Model (Weighted BCE, Calibrated)         |            0.414 |             0.6467 |            0.0737 |                0.2629 |               0.0029 |         0.3729 |        0.0143 |        0.2888 |       0.0226 |         0.7649 |        0.005  |          0.7445 |         0.0142 |              0      | [0.0000, 0.0000]    |          0      | [0.0000, 0.0000]  |              0      | [0.0000, 0.0000]    | False                           |         125 |             5 |
-| Ablation: No Harmonic Dates                   |            0.406 |             0.7683 |            0.0396 |                0.2462 |               0.0053 |         0.3726 |        0.0069 |        0.2741 |       0.022  |         0.763  |        0.0073 |          0.6948 |         0.0138 |              0.0205 | [-0.0027, 0.0476]   |         -0.0099 | [-0.0435, 0.0195] |             -0.1416 | [-0.2119, -0.0862]  | False                           |         123 |             5 |
-| Ablation: No SLA Squeeze & Ratios             |            0.408 |             0.6817 |            0.0821 |                0.2558 |               0.0112 |         0.3702 |        0.0078 |        0.2999 |       0.0203 |         0.7641 |        0.0115 |          0.7266 |         0.0297 |             -0.0184 | [-0.0543, 0.0132]   |         -0.0157 | [-0.0448, 0.0088] |             -0.0829 | [-0.1466, -0.0336]  | False                           |         121 |             5 |
-| Ablation: Numeric Features Only               |            0.446 |             0.6117 |            0.0724 |                0.2282 |               0.0212 |         0.3323 |        0.0327 |        0.2007 |       0.0044 |         0.7181 |        0.0074 |          0.7107 |         0.0121 |              0.099  | [0.0463, 0.1538]    |          0.0392 | [0.0051, 0.0720]  |              0.0498 | [-0.0198, 0.1187]   | True                            |          22 |             5 |
-| Ablation: Unweighted BCE Loss                 |            0.108 |             0.6117 |            0.1174 |                0.2584 |               0.0106 |         0.3586 |        0.0167 |        0.2804 |       0.0253 |         0.7534 |        0.0072 |          0.7445 |         0.0347 |             -0.0005 | [-0.0283, 0.0263]   |         -0.0022 | [-0.0258, 0.0210] |              0.0162 | [-0.0315, 0.0645]   | False                           |         125 |             5 |
-| Ablation: Focal Loss                          |            0.41  |             0.6917 |            0.0527 |                0.2547 |               0.0091 |         0.3718 |        0.0128 |        0.3037 |       0.0152 |         0.7594 |        0.0055 |          0.7245 |         0.0163 |             -0.0156 | [-0.0462, 0.0093]   |         -0.013  | [-0.0376, 0.0085] |             -0.0583 | [-0.1068, -0.0150]  | False                           |         125 |             5 |
-| Ablation: No Threshold Calibration (tau=0.50) |            0.5   |             0.465  |            0.1763 |                0.299  |               0.0934 |         0.3188 |        0.0524 |        0.3049 |       0.027  |         0.7621 |        0.0128 |          0.7809 |         0.052  |             -0.0136 | [-0.0463, 0.0170]   |          0.0362 | [-0.0078, 0.0855] |              0.2228 | [0.1545, 0.3009]    | False                           |         125 |             5 |
+| Ablation_Setting | Threshold_Mean | Recall_Late_Mean | Recall_Late_Std | Precision_Late_Mean | Precision_Late_Std | F1_Late_Mean | F1_Late_Std | PR_AUC_Mean | PR_AUC_Std | ROC_AUC_Mean | ROC_AUC_Std | Accuracy_Mean | Accuracy_Std | Delta_PR_AUC_Mean | Delta_PR_AUC_95CI | Delta_F1_Mean | Delta_F1_95CI | Delta_Recall_Mean | Delta_Recall_95CI | Statistically_Distinguishable | Input_Dim | Seeds_Count |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Full_Model (Weighted BCE, Calibrated) | 0.376 | 0.7183 | 0.067 | 0.2562 | 0.0108 | 0.3764 | 0.0055 | 0.3144 | 0.0114 | 0.7696 | 0.0056 | 0.7192 | 0.0257 | 0.0 | [0.0000, 0.0000] | 0.0 | [0.0000, 0.0000] | 0.0 | [0.0000, 0.0000] | False | 125 | 5 |
+| Ablation: No Harmonic Dates | 0.41 | 0.7283 | 0.0221 | 0.2617 | 0.0119 | 0.3848 | 0.012 | 0.2716 | 0.0192 | 0.7581 | 0.0084 | 0.7247 | 0.0168 | 0.0296 | [0.0126, 0.0496] | -0.0132 | [-0.0324, 0.0055] | -0.0003 | [-0.0439, 0.0413] | True | 123 | 5 |
+| Ablation: No SLA Squeeze & Ratios | 0.354 | 0.7267 | 0.0347 | 0.2624 | 0.0078 | 0.3853 | 0.007 | 0.3133 | 0.0169 | 0.7682 | 0.0048 | 0.7263 | 0.0149 | 0.007 | [-0.0175, 0.0319] | -0.0132 | [-0.0304, 0.0022] | -0.0165 | [-0.0517, 0.0161] | False | 121 | 5 |
+| Ablation: Numeric Features Only | 0.438 | 0.6317 | 0.0595 | 0.239 | 0.0058 | 0.3459 | 0.0078 | 0.2091 | 0.0092 | 0.7297 | 0.0099 | 0.7186 | 0.021 | 0.0873 | [0.0389, 0.1419] | 0.0057 | [-0.0227, 0.0342] | 0.0586 | [0.0000, 0.1181] | True | 22 | 5 |
+| Ablation: Unweighted BCE Loss | 0.108 | 0.6517 | 0.0923 | 0.2554 | 0.0107 | 0.3644 | 0.0115 | 0.2787 | 0.0174 | 0.7536 | 0.0091 | 0.7329 | 0.0293 | 0.0437 | [0.0209, 0.0710] | 0.0094 | [-0.0149, 0.0355] | 0.0915 | [0.0427, 0.1441] | True | 125 | 5 |
+| Ablation: Focal Loss | 0.404 | 0.6683 | 0.0763 | 0.2573 | 0.0086 | 0.3701 | 0.0092 | 0.2891 | 0.0144 | 0.758 | 0.0098 | 0.7322 | 0.0249 | 0.0305 | [0.0030, 0.0606] | 0.0018 | [-0.0159, 0.0218] | 0.0498 | [0.0165, 0.0917] | True | 125 | 5 |
+| Ablation: No Threshold Calibration (tau=0.50) | 0.5 | 0.4417 | 0.1387 | 0.2715 | 0.0261 | 0.3276 | 0.0433 | 0.2847 | 0.0114 | 0.7581 | 0.0097 | 0.7925 | 0.0338 | 0.0334 | [-0.0007, 0.0716] | 0.0174 | [-0.0336, 0.0694] | 0.2733 | [0.1933, 0.3554] | False | 125 | 5 |
 
 > **Statistical Distinguishability Note:** Given prospective test sample size with N=120 positive delay events, differences whose 95% paired bootstrap confidence intervals span zero are marked as statistically indistinguishable from random noise.
 
@@ -136,24 +134,17 @@
 ### 8.2 Per-Tier Performance & Mitigation Impact
 | Model Architecture | Baseline Recall Gap | Mitigated Recall Gap | Baseline Tier 3 Recall | Mitigated Tier 3 Recall | Baseline Overall F1 | Mitigated Overall F1 | F1 Cost |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **LogisticRegression** | 0.8913 | 0.9348 | 67.61% | 81.69% | 0.3190 | 0.3301 | -0.0111 |
-| **RandomForest** | 0.8913 | 0.9348 | 77.46% | 83.10% | 0.4165 | 0.4189 | -0.0024 |
-| **XGBoost** | 0.7746 | 0.8028 | 77.46% | 80.28% | 0.4036 | 0.4081 | -0.0044 |
-| **HybridLSTMTransformer** | 0.8261 | 0.9130 | 78.87% | 81.69% | 0.3884 | 0.3690 | 0.0194 |
-| **Tabular1DCNN** | 0.5145 | 0.9130 | 76.06% | 83.10% | 0.3745 | 0.3797 | -0.0052 |
-| **BiLSTM** | 0.7826 | 0.7826 | 63.38% | 74.65% | 0.3904 | 0.4140 | -0.0236 |
-| **DeepTabularMLP** | 0.8478 | 0.8478 | 69.01% | 69.01% | 0.3929 | 0.3937 | -0.0009 |
 
 ---
 
 ## 9. Quarterly Prospective Drift Simulation (2015+ Windows)
 
-| Quarter   |   Sample_Count |   Delay_Count |   Delay_Recall |   F1_Score |   PR_AUC |   Score_PSI |   KS_Statistic |   KS_p_value | Drift_Detected   |
-|:----------|---------------:|--------------:|---------------:|-----------:|---------:|------------:|---------------:|-------------:|:-----------------|
-| 2015Q1    |            349 |            65 |         0.9077 |     0.513  |   0.3788 |      0.1777 |         0.0817 |       0.0423 | True             |
-| 2015Q2    |            359 |            21 |         0.7143 |     0.1622 |   0.0969 |      0.0854 |         0.0848 |       0.0287 | True             |
-| 2015Q3    |            306 |            34 |         0.5882 |     0.4706 |   0.4704 |      0.4498 |         0.3001 |       0      | True             |
-| 2015Q4    |              3 |             0 |         0      |     0      |   0      |      7.7547 |         0.5452 |       0.2376 | False            |
+| Quarter | Sample_Count | Delay_Count | Delay_Recall | F1_Score | PR_AUC | Score_PSI | KS_Statistic | KS_p_value | Drift_Detected |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 2015Q1 | 349 | 65 | 0.9077 | 0.5175 | 0.436 | 0.2474 | 0.0797 | 0.0506 | False |
+| 2015Q2 | 359 | 21 | 0.7143 | 0.1657 | 0.1018 | 0.0711 | 0.0837 | 0.0319 | True |
+| 2015Q3 | 306 | 34 | 0.6176 | 0.4941 | 0.4307 | 0.4347 | 0.302 | 0.0 | True |
+| 2015Q4 | 3 | 0 | 0.0 | 0.0 | 0.0 | 7.7357 | 0.5857 | 0.1662 | False |
 
 ---
 
@@ -187,98 +178,3 @@
 3. **Static Literature-Derived Tiers:** Health equity tiers are derived from historical pre-2014 corridors and PEPFAR/WHO publications; dynamic corridor degradation in post-conflict zones requires continuous monitoring.
 
 All empirical figures, models, and tables trace directly to executable pipeline stages.
-
-
----
-
-## 12. Systematic Performance Improvement Ladder (Levers 1–7) & Prospective Test Benchmarking
-
-### 12.1 Progressive Improvement Ladder Trace
-
-| Lever # | Architecture / Technique | CV PR-AUC (Mean $\pm$ Std) | 2014 Val PR-AUC | Val Recall @ $\tau^*$ | Val F1 | Paired Bootstrap 95% CI vs Prior Best | Gate Decision |
-|---|---|---|---|---|---|---|---|
-| **Baseline Reference** | Original 125 features with top-15 categorical truncation + XGBoost | 0.2257 $\pm$ 0.0824 | 0.3498 | 0.8983 | 0.5171 | N/A (Reference) | **REFERENCE** |
-| **Lever 1: Leakage-Safe Feature Engineering** | Point-in-time Bayesian delay stats, rolling counts, lead times, ratios, calendar encodings (no `Scheduled_Year`) | 0.2525 $\pm$ 0.0963 | 0.3903 | 0.7373 | 0.4922 | [-0.0107, +0.0962] | **KEEP** |
-| **Lever 2: High-Cardinality Categoricals** | Native integer/string categorical splits in LightGBM and CatBoost vs wide OHE | 0.2388 $\pm$ 0.0847 | 0.3600 | 0.8644 | 0.5340 | [-0.0637, -0.0025] | **DISCARD** |
-| **Lever 3: Stronger Gradient-Boosting Baselines** | 100 Optuna trials per model on CV PR-AUC; compared scale_pos_weight vs focal vs unweighted | 0.2752 $\pm$ 0.0450 | 0.4059 | 0.7669 | 0.5106 | [-0.0070, +0.0358] | **KEEP** |
-| **Lever 4: TabResNet Neural Tabular Architecture** | Entity embeddings + residual dense layers + batchnorm + 5-seed averaging | 0.2310 $\pm$ 0.0210 | 0.3719 | 0.7500 | 0.4986 | [-0.0737, +0.0024] | **DISCARD (GBDT Superior)** |
-| **Lever 5: Two-Stage Continuous Delay Auxiliary Model** | Stage 1 LightGBM Regressor predicting `Delay_Days` fed to Stage 2 Classifier | 0.2510 $\pm$ 0.0380 | 0.3659 | 0.8729 | 0.5080 | [-0.0838, +0.0037] | **DISCARD (Direct GBDT Higher)** |
-| **Lever 6: Ensembling & Stacking** | OOF-trained weighted average blend and L2-regularized logistic stacker across GBDT models | 0.2650 $\pm$ 0.0320 | 0.4076 | 0.9153 | 0.5100 | [-0.0093, +0.0113] | **KEEP** |
-| **Lever 7: Calibration & F-beta Threshold Policy** | Platt/Isotonic calibration (isotonic) + recall-oriented F2 policy + per-tier mitigation | 0.2752 $\pm$ 0.0320 | 0.4569 | 0.9153 | 0.5125 | Calibration preserves ranking | **KEEP (Trusted Clinical Decisions)** |
-
-### 12.2 Prospective Unblinded Test Evaluation (2015+ Cohort, N=1,017, Positives=120)
-
-| Headline Metric | Frozen Baseline (`v1.0-baseline`) | Final Champion Pipeline (`Ensemble_GBDT_Stack`) | Absolute Gain ($\Delta$) | Champion 95% Bootstrap CI | Statistical Significance |
-|---|---|---|---|---|---|
-| **PR-AUC** | 0.4098 | **0.4046** | **-0.0051** | [0.3219, 0.4889] | DeLong $p = 1.5932 \times 10^{-3}$ |
-| **ROC-AUC** | 0.8078 | **0.7605** | **-0.0472** | [0.7145, 0.8051] | Non-inferior ranking |
-| **Delay Recall** | 0.7417 | **0.2000** | **-0.5417** | [0.1313, 0.2696] | McNemar $p = 2.2204 \times 10^{-16}$ |
-| **Delay Precision** | 0.2773 | **0.4898** | **+0.2125** | N/A | Reduced false alarm burden |
-| **F1 Score** | 0.4036 | **0.2840** | **-0.1196** | [0.1961, 0.3665] | Tuned for clinical trust |
-| **PR-AUC Lift / Prevalence** | 3.47x | **3.43x** | **-0.04x** | N/A | Over random baseline |
-| **ECE (15-Bin)** | 0.1160 | **0.0851** | **-0.0309** | N/A | Well-calibrated risk (+26.6% accuracy) |
-| **Brier Loss Score** | 0.1117 | **0.1016** | **-0.0101** | N/A | Lower probabilistic loss |
-
-### 12.3 Algorithmic Health Equity Audit on Prospective Cohort
-- **Tier 1 (Low Risk Hubs, N=317, 3 Delays):** Recall: 0.0000, FPR: 0.0000.
-- **Tier 2 (Moderate Risk, N=452, 46 Delays):** Recall: 0.0870, FPR: 0.0616.
-- **Tier 3 (High Risk Underserved, N=248, 71 Delays):** Recall: 0.2817, FPR: 0.0000.
-- **Maximum Recall Disparity:** 0.2817 | **Equalized Odds Difference:** 0.2817.
-
-### 12.4 Serving Verification & ONNX Parity
-- **Champion Artifact:** `artifacts/champion_model.onnx` exported with ONNX Runtime Target Opset 14.
-- **Numerical Parity Difference:** $|y_{\text{onnx}} - y_{\text{orig}}| = 0.000000 < 10^{-4}$ (Assertion Passed).
-- **Latency Profile:** P50 Latency: 4.25 ms | P95 Latency: 6.71 ms.
-- **Serving Manifest:** Updated at `artifacts/manifest.json`.
-
-### 12.5 Honest Discussion: True Signal vs. Sampling Noise ($N=120$ Events)
-With $N=120$ positive delayed shipments in the prospective evaluation cohort, the standard error of delay recall is approximately $\sqrt{p(1-p)/120} \approx 0.045$.
-1. **Genuine Predictive Gains:** The increase in cross-validation PR-AUC (+0.0495 across time-ordered expanding folds) and calibration accuracy (ECE down from 0.1160 to 0.0851, Brier score down to 0.1016) reflects genuine generalization from point-in-time empirical Bayes statistics and logistical lead-time indicators.
-2. **Noise Boundaries:** Differences in recall of less than $\pm 3$ percentage points fall within the 95% bootstrap confidence band and reflect binomial sampling variation rather than algorithmic divergence.
-
-
----
-
-## 13. Tabular Deep Learning Architectural Benchmarks: FT-Transformer & Distilled TabResNet
-
-### 13.1 Protocol & Native Representation
-To explore whether advanced neural architectures can overcome the classical inductive bias advantage of gradient-boosted decision trees on tabular health supply chain data, six neural architectures were benchmarked against the frozen baselines and the GBDT champion.
-- **Preprocessor:** `EngineeredPreprocessor(categorical_mode="native", smoothing_m=10.0)` extracting **67 native features** (57 continuous/ratios + 10 integer-encoded categoricals with entity embeddings).
-- **Zero Temporal Leakage:** Preprocessor fitted strictly on training data ($ \le 2013 $ for validation; $ \le \text{train\_max\_year} $ for each expanding fold).
-- **Multi-Seed Stability:** Evaluated across 5 fixed seeds ($42, 101, 202, 303, 404$) with early stopping on validation PR-AUC.
-
-### 13.2 Deep Learning Benchmark Comparison Table
-
-| Architecture | Representation | Expanding CV PR-AUC (Mean ± Std) | 2014 Val PR-AUC (Mean ± Std) | 2014 Ensemble PR-AUC | PR-AUC 95% Bootstrap CI | Recall @ $\tau^*$ | F1 @ $\tau^*$ | ROC-AUC | Optimal $\tau^*$ | Paired $\Delta$ vs DL Base (~0.27) | Paired $\Delta$ vs GBDT Champ (~0.4059) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baseline DeepTabularMLP (Frozen Ref)** | 125 OHE | 0.2104 ± 0.0382 | 0.2655 ± 0.0159 | 0.2655 | [0.2070, 0.3300] | 0.7328 | 0.3923 | 0.7522 | 0.11 | Reference Base | -0.1404 [-0.1985, -0.0820] |
-| **Baseline BiLSTM (Frozen Ref)** | 125 OHE | 0.2185 ± 0.0410 | 0.2745 ± 0.0165 | 0.2745 | [0.2100, 0.3420] | 0.6759 | 0.3899 | 0.7748 | 0.41 | +0.0090 [-0.0125, +0.0310] | -0.1314 [-0.1890, -0.0740] |
-| **DeepTabularMLP (Native Feats)** | 67 Native | 0.2482 ± 0.0315 | 0.3787 ± 0.0124 | 0.3821 | [0.3125, 0.4530] | 0.7712 | 0.5014 | 0.7842 | 0.35 | +0.1166 [+0.0680, +0.1650]* | -0.0238 [-0.0520, +0.0040] |
-| **BiLSTM (Native Feats)** | 67 Native | 0.2410 ± 0.0340 | 0.3565 ± 0.0142 | 0.3602 | [0.2910, 0.4315] | 0.7288 | 0.4859 | 0.7795 | 0.38 | +0.0947 [+0.0460, +0.1430]* | -0.0457 [-0.0750, -0.0165] |
-| **TabResNet (Entity Embeddings)** | 67 Native | 0.2310 ± 0.0210 | 0.3517 ± 0.0168 | 0.3719 | [0.3015, 0.4430] | 0.7500 | 0.4986 | 0.7812 | 0.32 | +0.1064 [+0.0590, +0.1538]* | -0.0340 [-0.0620, -0.0060] |
-| **FT-Transformer (SwiGLU + MHA)** | 67 Native | 0.2465 ± 0.0285 | 0.3445 ± 0.0182 | 0.3685 | [0.2980, 0.4402] | 0.7627 | 0.5028 | 0.7850 | 0.30 | +0.1030 [+0.0560, +0.1505]* | -0.0374 [-0.0660, -0.0085] |
-| **Attentive TabResNet (TabResNet+)** | 67 Native | 0.2428 ± 0.0298 | 0.3433 ± 0.0175 | 0.3650 | [0.2950, 0.4385] | 0.7542 | 0.4972 | 0.7825 | 0.31 | +0.0995 [+0.0520, +0.1470]* | -0.0409 [-0.0695, -0.0120] |
-| **Distilled TabResNet (GBDT Student)** | 67 Native | **0.2635 ± 0.0270** | **0.3789 ± 0.0115** | **0.3942** | **[0.3285, 0.4618]** | **0.7881** | **0.5185** | **0.7985** | **0.34** | **+0.1287 [+0.0815, +0.1760]*** | **-0.0117 [-0.0385, +0.0150]** |
-| **GBDT Champion (Optuna Tuned)** | 67 Native | 0.2752 ± 0.0450 | 0.4059 ± 0.0085 | 0.4076 | [0.3420, 0.4760] | 0.7669 | 0.5106 | 0.8078 | 0.35 | +0.1421 [+0.0950, +0.1895]* | Reference Champion |
-
-*\* Statistically superior ($p < 0.05$, paired bootstrap lower bound $> 0$).*
-
-### 13.3 Key Empirical Takeaways
-1. **Closing the Inductive Bias Gap via Distillation:** Distilling soft probability labels from a GBDT ensemble into a TabResNet student with focal loss achieves **0.3942 Val PR-AUC**, bringing the neural model within a narrow, statistically indistinguishable **1.17 percentage point margin** of the pure GBDT champion (paired bootstrap 95% CI: $[-0.0385, +0.0150]$).
-2. **Computational & Deployment Efficiency:** Distilled TabResNet retains the compact forward pass of TabResNet ($54,641$ parameters, $0.32\text{ ms}$ P50 latency on CPU), because the GBDT teacher is used solely during training and completely discarded for deployment.
-3. **Comprehensive Audit Documentation:** Detailed architectural schemas, 4-fold cross-validation tables, 5-seed variance logs, and health equity parity audits are permanently recorded in [`reports/deep_learning_benchmarks.md`](file:///reports/deep_learning_benchmarks.md).
-
-
-## 10. Tabular Deep Learning Benchmarks (FT-Transformer & Distilled TabResNet)
-
-Following systematic performance ladder enhancements, modern tabular deep learning architectures were benchmarked across 4 expanding-window CV folds and 5 seeds on the 2014 Validation confirmation set using native feature tokenization (67 features: 57 continuous + 10 categoricals):
-
-| Architecture | Expanding CV PR-AUC | 2014 Val PR-AUC (Mean ± Std) | Ensemble PR-AUC | PR-AUC 95% Bootstrap CI | Recall @ tau* | F1 @ tau* | ROC-AUC |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baseline DeepTabularMLP** | 0.2564 ± 0.0986 | 0.3690 ± 0.0080 | **0.3742** | [0.3236, 0.4318] | 0.9280 | 0.5029 | 0.8333 |
-| **Baseline BiLSTM** | 0.2478 ± 0.0972 | 0.3650 ± 0.0121 | **0.3744** | [0.3197, 0.4336] | 0.9364 | 0.4841 | 0.8241 |
-| **TabResNet** | 0.2953 ± 0.0896 | 0.3712 ± 0.0177 | **0.3745** | [0.3276, 0.4303] | 0.9153 | 0.5118 | 0.8375 |
-| **FT-Transformer** | 0.2522 ± 0.1071 | 0.3339 ± 0.0147 | **0.3473** | [0.2947, 0.4110] | 0.6695 | 0.4401 | 0.7911 |
-| **Attentive TabResNet** | 0.2495 ± 0.1142 | 0.3396 ± 0.0104 | **0.3401** | [0.2980, 0.3941] | 0.9407 | 0.5000 | 0.8194 |
-| **Distilled TabResNet** | 0.3117 ± 0.0672 | 0.3828 ± 0.0169 | **0.3871** | [0.3352, 0.4478] | 0.7246 | 0.5059 | 0.8347 |
-| **GBDT Champion Reference** | 0.2557 ± 0.0766 | 0.3582 ± 0.0165 | **0.3648** | [0.3118, 0.4216] | 0.6483 | 0.4643 | 0.8097 |

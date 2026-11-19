@@ -1,23 +1,37 @@
 {
-  "model_architecture": "Ensemble_GBDT_Stack",
-  "components": [
-    "XGBoost_Hist",
-    "LightGBM_Native",
-    "CatBoost_Native"
-  ],
-  "blend_weights": [
-    0.5,
-    0.3,
-    0.2
-  ],
-  "optimal_threshold": 0.24,
-  "calibrator": "isotonic",
-  "tier_thresholds": {
-    "Tier 1": 0.13,
-    "Tier 2": 0.13,
-    "Tier 3": 0.24
+  "model_name": "BiLSTM",
+  "onnx_artifact": "BiLSTM.onnx",
+  "torchscript_artifact": "BiLSTM.torchscript.pt",
+  "int8_artifact": null,
+  "numerical_parity_max_diff": 6.705522537231445e-08,
+  "model_onnx_sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4",
+  "model_torchscript_sha256": "2c29da3f2c77e30b9873753a6dba6d8b567f5857eb7686371f4777f2121088aa",
+  "preprocessor_sha256": "4027a9101625a8468a60eb8b6dec6950623c091f77d9fc646c680d079a49a142",
+  "config_sha256": "1196f18bdff14ea634465802d41301ab122ff9ddba3942bb95cff7d2de5d275a",
+  "git_commit": "ae6d009ff4fac3defade397949152095b19f8cdd",
+  "tau_star": 0.35,
+  "calibrator_type": "isotonic",
+  "per_tier_thresholds": {
+    "Tier_1_Low_Risk_Hub": 0.32,
+    "Tier_2_Moderate_Risk": 0.35,
+    "Tier_3_High_Risk_Underserved": 0.25
   },
-  "export_timestamp": "2026-11-18T18:01:36Z",
-  "input_dimension_ohe": 277,
-  "input_dimension_native": 67
+  "training_date_range": "2006-2013",
+  "validation_date_range": "2014",
+  "test_date_range": "2015+",
+  "served_pathways": {
+    "accuracy_champion": {
+      "model_name": "BiLSTM",
+      "onnx_artifact": "BiLSTM.onnx",
+      "numerical_parity_max_diff": 6.705522537231445e-08,
+      "sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4"
+    },
+    "edge_champion": {
+      "model_name": "BiLSTM",
+      "onnx_artifact": "BiLSTM.onnx",
+      "torchscript_artifact": "BiLSTM.torchscript.pt",
+      "numerical_parity_max_diff": 6.705522537231445e-08,
+      "sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4"
+    }
+  }
 }

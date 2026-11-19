@@ -262,11 +262,13 @@ def predict_single(
     3. Calibrated probability and per-tier threshold alert.
     4. Optional top-k feature attribution.
     """
-    # Unbox Query parameters if called directly outside FastAPI dependency injection
+    # Unbox Query and Header parameters if called directly outside FastAPI dependency injection
     if hasattr(explain, "default"):
         explain = bool(explain.default)
     if hasattr(top_k, "default"):
         top_k = int(top_k.default)
+    if hasattr(idempotency_key, "default"):
+        idempotency_key = idempotency_key.default
     t_start = time.perf_counter()
     REQ_COUNT.labels(endpoint="/predict", method="POST").inc()
 

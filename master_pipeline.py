@@ -86,6 +86,29 @@ from src.infrastructure.monitoring.drift_detector import simulate_quarterly_drif
 from benchmark_serving import run_qos_benchmark, get_hardware_specifications
 
 
+def safe_to_markdown(df: pd.DataFrame, index: bool = True) -> str:
+    """Renders DataFrame as Markdown table without requiring external tabulate dependency."""
+    try:
+        return df.to_markdown(index=index)
+    except Exception:
+        cols = list(df.columns)
+        if index:
+            header = "| Index | " + " | ".join(str(c) for c in cols) + " |"
+            sep = "| :--- | " + " | ".join([":---:"] * len(cols)) + " |"
+            rows = []
+            for idx, row in df.iterrows():
+                row_vals = [str(row[c]) for c in cols]
+                rows.append(f"| {idx} | " + " | ".join(row_vals) + " |")
+        else:
+            header = "| " + " | ".join(str(c) for c in cols) + " |"
+            sep = "| " + " | ".join([":---:"] * len(cols)) + " |"
+            rows = []
+            for _, row in df.iterrows():
+                row_vals = [str(row[c]) for c in cols]
+                rows.append("| " + " | ".join(row_vals) + " |")
+        return "\n".join([header, sep] + rows)
+
+
 class MasterPipeline:
     """Master End-to-End HSCM Research & Deployment Pipeline."""
 
@@ -793,10 +816,10 @@ class MasterPipeline:
         ]
 
         if hasattr(self, "df_comp"):
-            lines.append(self.df_comp.to_markdown())
+            lines.append(safe_to_markdown(self.df_comp))
         elif (self.reports_dir / "model_comparison.csv").exists():
             df = pd.read_csv(self.reports_dir / "model_comparison.csv")
-            lines.append(df.to_markdown(index=False))
+            lines.append(safe_to_markdown(df, index=False))
 
         lines.extend([
             "",
@@ -891,7 +914,7 @@ class MasterPipeline:
         ])
 
         if df_ablation is not None:
-            lines.append(df_ablation.to_markdown(index=False))
+            lines.append(safe_to_markdown(df_ablation, index=False))
 
         lines.extend([
             "",
@@ -929,7 +952,7 @@ class MasterPipeline:
         ])
 
         if df_drift is not None:
-            lines.append(df_drift.to_markdown(index=False))
+            lines.append(safe_to_markdown(df_drift, index=False))
 
         lines.extend([
             "",
