@@ -26,15 +26,16 @@ class ExactAdaptiveAvgPool1d(nn.Module):
         if in_len % self.output_size == 0:
             return torch.nn.functional.adaptive_avg_pool1d(x, self.output_size)
 
-        key = (in_len, self.output_size, str(x.device))
+        key = (in_len, self.output_size)
         if key not in self._W_cache:
-            W = torch.zeros(in_len, self.output_size, dtype=x.dtype, device=x.device)
+            W = torch.zeros(in_len, self.output_size)
             for i in range(self.output_size):
                 s = math.floor(i * in_len / self.output_size)
                 e = math.ceil((i + 1) * in_len / self.output_size)
                 W[s:e, i] = 1.0 / (e - s)
             self._W_cache[key] = W
-        return torch.matmul(x, self._W_cache[key])
+        W = self._W_cache[key].to(device=x.device, dtype=x.dtype)
+        return torch.matmul(x, W)
 
 
 class Tabular1DCNN(nn.Module):
