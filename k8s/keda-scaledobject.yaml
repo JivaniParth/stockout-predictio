@@ -1,0 +1,31 @@
+# KEDA ScaledObject for Cloud-Native Latency-Driven Autoscaling
+# Queries Prometheus directly via PromQL without requiring the custom-metrics APIService
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: hscm-prediction-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hscm-prediction-api
+  minReplicaCount: 2
+  maxReplicaCount: 10
+  cooldownPeriod: 300
+  pollingInterval: 15
+  triggers:
+    # 1. Latency trigger: P95 Request Duration > 250ms (0.250s)
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus:9090
+        metricName: http_request_duration_seconds_p95
+        query: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[2m])) by (le))
+        threshold: "0.250"
+    # 2. Concurrency trigger: Active requests per pod > 50
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus:9090
+        metricName: http_requests_in_flight
+        query: sum(http_requests_in_flight{app="hscm-prediction-api"})
+        threshold: "50"

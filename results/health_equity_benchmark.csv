@@ -1,0 +1,8 @@
+Model,Tier1_Samples,Tier1_Recall,Tier2_Samples,Tier2_Recall,Tier3_Samples,Tier3_Recall,Equal_Opportunity_Diff,Disparate_Impact_Ratio,Statistical_Parity_Diff
+LogisticRegression,317,0.0,452,0.9348,248,0.7887,0.7887,3.4161,0.4192
+RandomForest,317,0.0,452,0.7609,248,0.7042,0.7042,1.0,0.4073
+XGBoost,317,0.0,452,0.7609,248,0.7465,0.7465,1.0,0.4516
+DeepTabularMLP,317,0.0,452,0.8696,248,0.7042,0.7042,1.0,0.4355
+BiLSTM,317,0.0,452,0.913,248,0.7183,0.7183,1.0,0.5161
+HybridLSTMTransformer,317,0.0,452,0.9348,248,0.7042,0.7042,1.0,0.4435
+Tabular1DCNN,317,0.0,452,0.913,248,0.7183,0.7183,15.9014,0.4232

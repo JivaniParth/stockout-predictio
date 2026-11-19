@@ -1,0 +1,23 @@
+{
+  "model_architecture": "Ensemble_GBDT_Stack",
+  "components": [
+    "XGBoost_Hist",
+    "LightGBM_Native",
+    "CatBoost_Native"
+  ],
+  "blend_weights": [
+    0.5,
+    0.3,
+    0.2
+  ],
+  "optimal_threshold": 0.24,
+  "calibrator": "isotonic",
+  "tier_thresholds": {
+    "Tier 1": 0.13,
+    "Tier 2": 0.13,
+    "Tier 3": 0.24
+  },
+  "export_timestamp": "2026-11-18T18:01:36Z",
+  "input_dimension_ohe": 277,
+  "input_dimension_native": 67
+}

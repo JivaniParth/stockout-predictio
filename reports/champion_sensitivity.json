@@ -1,0 +1,291 @@
+{
+  "summary": "MAUT Weight Sensitivity Grid Analysis across Accuracy & Edge Formulations",
+  "total_accuracy_grid_evaluations": 60,
+  "total_edge_grid_evaluations": 150,
+  "accuracy_champion_selection_frequencies": {
+    "LogisticRegression": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "RandomForest": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "XGBoost": {
+      "count": 56,
+      "selection_rate_pct": 93.33
+    },
+    "HybridLSTMTransformer": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "Tabular1DCNN": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "BiLSTM": {
+      "count": 4,
+      "selection_rate_pct": 6.67
+    },
+    "DeepTabularMLP": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    }
+  },
+  "edge_champion_selection_frequencies": {
+    "LogisticRegression": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "RandomForest": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "XGBoost": {
+      "count": 150,
+      "selection_rate_pct": 100.0
+    },
+    "HybridLSTMTransformer": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "Tabular1DCNN": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "BiLSTM": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    },
+    "DeepTabularMLP": {
+      "count": 0,
+      "selection_rate_pct": 0.0
+    }
+  },
+  "accuracy_champion_stable": "XGBoost",
+  "edge_champion_stable": "XGBoost",
+  "sample_grid_accuracy_trials": [
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.2,
+        "equity_gap": 0.05,
+        "p95_latency": 0.275,
+        "memory_mb": 0.275
+      },
+      "champion": "XGBoost",
+      "score": 0.9537
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.2,
+        "equity_gap": 0.15,
+        "p95_latency": 0.225,
+        "memory_mb": 0.225
+      },
+      "champion": "XGBoost",
+      "score": 0.9507
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.2,
+        "equity_gap": 0.25,
+        "p95_latency": 0.175,
+        "memory_mb": 0.175
+      },
+      "champion": "XGBoost",
+      "score": 0.9477
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.3,
+        "equity_gap": 0.05,
+        "p95_latency": 0.225,
+        "memory_mb": 0.225
+      },
+      "champion": "XGBoost",
+      "score": 0.9548
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.3,
+        "equity_gap": 0.15,
+        "p95_latency": 0.175,
+        "memory_mb": 0.175
+      },
+      "champion": "XGBoost",
+      "score": 0.9519
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.3,
+        "equity_gap": 0.25,
+        "p95_latency": 0.125,
+        "memory_mb": 0.125
+      },
+      "champion": "XGBoost",
+      "score": 0.9489
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.4,
+        "equity_gap": 0.05,
+        "p95_latency": 0.175,
+        "memory_mb": 0.175
+      },
+      "champion": "XGBoost",
+      "score": 0.956
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.4,
+        "equity_gap": 0.15,
+        "p95_latency": 0.125,
+        "memory_mb": 0.125
+      },
+      "champion": "XGBoost",
+      "score": 0.953
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.4,
+        "equity_gap": 0.25,
+        "p95_latency": 0.075,
+        "memory_mb": 0.075
+      },
+      "champion": "XGBoost",
+      "score": 0.9501
+    },
+    {
+      "weights": {
+        "pr_auc": 0.2,
+        "delay_recall": 0.5,
+        "equity_gap": 0.05,
+        "p95_latency": 0.125,
+        "memory_mb": 0.125
+      },
+      "champion": "XGBoost",
+      "score": 0.9571
+    }
+  ],
+  "sample_grid_edge_trials": [
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.15,
+        "pr_auc": 0.1,
+        "equity_gap": 0.71
+      },
+      "champion": "XGBoost",
+      "score": 0.9513
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.15,
+        "pr_auc": 0.2,
+        "equity_gap": 0.61
+      },
+      "champion": "XGBoost",
+      "score": 0.9365
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.25,
+        "pr_auc": 0.1,
+        "equity_gap": 0.61
+      },
+      "champion": "XGBoost",
+      "score": 0.9554
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.25,
+        "pr_auc": 0.2,
+        "equity_gap": 0.51
+      },
+      "champion": "XGBoost",
+      "score": 0.9406
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.35,
+        "pr_auc": 0.1,
+        "equity_gap": 0.51
+      },
+      "champion": "XGBoost",
+      "score": 0.9596
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.02,
+        "delay_recall": 0.35,
+        "pr_auc": 0.2,
+        "equity_gap": 0.41
+      },
+      "champion": "XGBoost",
+      "score": 0.9447
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.05,
+        "delay_recall": 0.15,
+        "pr_auc": 0.1,
+        "equity_gap": 0.68
+      },
+      "champion": "XGBoost",
+      "score": 0.9525
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.05,
+        "delay_recall": 0.15,
+        "pr_auc": 0.2,
+        "equity_gap": 0.58
+      },
+      "champion": "XGBoost",
+      "score": 0.9376
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.05,
+        "delay_recall": 0.25,
+        "pr_auc": 0.1,
+        "equity_gap": 0.58
+      },
+      "champion": "XGBoost",
+      "score": 0.9566
+    },
+    {
+      "weights": {
+        "p95_latency": 0.02,
+        "memory_mb": 0.05,
+        "delay_recall": 0.25,
+        "pr_auc": 0.2,
+        "equity_gap": 0.48
+      },
+      "champion": "XGBoost",
+      "score": 0.9418
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+data:
+  raw_path: "SCMS_Delivery_History_Dataset.csv"
+  reports_dir: "reports"
+  artifacts_dir: "artifacts"
+  models_dir: "models"
+  figures_dir: "reports/figures"
+  waterfall_path: "reports/data_waterfall.json"
+  date_columns:
+    - "Scheduled Delivery Date"
+    - "Delivered to Client Date"
+    - "PO Sent to Vendor Date"
+    - "Delivery Recorded Date"
+  target_column: "Late_Delivery_Risk"
+  split:
+    train_end_year: 2013
+    val_year: 2014
+    test_start_year: 2015
+    split_val_2014: false
+    val_a_ratio: 0.5
+  leakage_guard:
+    post_outcome_columns:
+      - "Delivered to Client Date"
+      - "Delivery Recorded Date"
+      - "Delay_Days"
+      - "Actual_Delivery_Date"
+    max_correlation_threshold: 0.95
+
+training:
+  random_seeds: [42, 101, 202, 303, 404]
+  primary_seed: 42
+  batch_size: 64
+  max_epochs: 40
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  early_stopping_patience: 8
+  gradient_clip_max_norm: 1.0
+  mixed_precision: true
+  loss_variant: "weighted_bce"
+  focal_gamma: 2.0
+  focal_alpha: 0.75
+  optuna:
+    n_trials: 15
+    timeout_seconds: 300
+
+calibration:
+  methods:
+    - "platt"
+    - "isotonic"
+  n_bins: 15
+
+fairness:
+  tiers_config_path: "config/tiers.yaml"
+  bootstrap_samples: 1000
+  alpha: 0.05
+
+champion_selection:
+  scoring_weights:
+    pr_auc: 0.35
+    delay_recall: 0.30
+    qos_latency: 0.15
+    qos_memory: 0.10
+    fairness_gap: 0.10
+
+serving:
+  manifest_path: "artifacts/manifest.json"
+  dynamic_batch_size: 32
+  dynamic_batch_max_latency_ms: 8.0
+  cache_type: "in_memory"
+  cache_ttl_seconds: 3600
+  rate_limit_per_minute: 120
+
+monitoring:
+  drift:
+    psi_threshold: 0.2
+    ks_alpha: 0.05
+    log_storage: "sqlite"
+    db_path: "reports/drift/prediction_monitoring.db"
+    log_jsonl_path: "reports/drift/predictions.jsonl"

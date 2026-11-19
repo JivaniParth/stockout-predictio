@@ -1,0 +1,28 @@
+{
+  "budget": {
+    "n_trials_per_model": 5,
+    "timeout_seconds": 60,
+    "objective": "Validation PR-AUC"
+  },
+  "Tabular1DCNN": {
+    "model_name": "Tabular1DCNN",
+    "best_params": {
+      "dropout_rate": 0.1749080237694725,
+      "lr": 0.0018679147494991151
+    },
+    "best_pr_auc": 0.3855443038564333,
+    "n_trials_completed": 5
+  },
+  "XGBoost": {
+    "model_name": "XGBoost",
+    "best_params": {
+      "max_depth": 6,
+      "learning_rate": 0.013787764619353767,
+      "n_estimators": 79,
+      "subsample": 0.7465447373174767,
+      "colsample_bytree": 0.7824279936868144
+    },
+    "best_pr_auc": 0.40083388271625736,
+    "n_trials_completed": 5
+  }
+}

@@ -1,0 +1,37 @@
+# Horizontal Pod Autoscaler (HPA v2) for Delivery Delay Serving Pods
+# NOTE ON CUSTOM METRIC PIPELINE:
+# Standard Kubernetes metrics-server only serves Pod/Node CPU and Memory.
+# To evaluate the custom latency metric 'http_request_duration_seconds':
+# 1. Option A (Native HPA): Deploy 'k8s-prometheus-adapter' (see k8s/prometheus-adapter-config.yaml)
+#    which registers 'custom.metrics.k8s.io' and exposes PromQL rate queries to the HPA.
+# 2. Option B (KEDA): Deploy KEDA operator and use 'ScaledObject' (see k8s/keda-scaledobject.yaml)
+#    which queries Prometheus directly without the custom-metrics APIService.
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hscm-prediction-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hscm-prediction-api
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    # 1. Core Resource metric: CPU utilization (handled by metrics-server)
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    # 2. Custom Pods latency metric (requires Prometheus-Adapter registering custom.metrics.k8s.io)
+    - type: Pods
+      pods:
+        metric:
+          name: http_request_duration_seconds
+        target:
+          type: AverageValue
+          averageValue: "250m"

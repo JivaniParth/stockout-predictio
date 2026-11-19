@@ -1,0 +1,463 @@
+{
+  "ml_metrics": {
+    "LogisticRegression": {
+      "Accuracy": 0.6037364798426745,
+      "Balanced_Accuracy": 0.6995680044593088,
+      "Precision_Late": 0.20582120582120583,
+      "Recall_Late": 0.825,
+      "Specificity": 0.5741360089186176,
+      "F1_Late": 0.32945091514143093,
+      "F1_Macro": 0.5241113612692501,
+      "ROC_AUC": 0.7271042363433668,
+      "PR_AUC": 0.23744529516583354,
+      "Brier_Score": 0.21194348479856653,
+      "Threshold": 0.4,
+      "TP": 99,
+      "FP": 382,
+      "TN": 515,
+      "FN": 21
+    },
+    "RandomForest": {
+      "Accuracy": 0.7502458210422812,
+      "Balanced_Accuracy": 0.732093088071349,
+      "Precision_Late": 0.27960526315789475,
+      "Recall_Late": 0.7083333333333334,
+      "Specificity": 0.7558528428093646,
+      "F1_Late": 0.4009433962264151,
+      "F1_Macro": 0.6215897105355678,
+      "ROC_AUC": 0.7877183203270159,
+      "PR_AUC": 0.3226354427488595,
+      "Brier_Score": 0.12754065273211532,
+      "Threshold": 0.48,
+      "TP": 85,
+      "FP": 219,
+      "TN": 678,
+      "FN": 35
+    },
+    "XGBoost": {
+      "Accuracy": 0.7512291052114061,
+      "Balanced_Accuracy": 0.7434782608695651,
+      "Precision_Late": 0.284789644012945,
+      "Recall_Late": 0.7333333333333333,
+      "Specificity": 0.7536231884057971,
+      "F1_Late": 0.41025641025641024,
+      "F1_Macro": 0.6263120057512581,
+      "ROC_AUC": 0.7970039018952063,
+      "PR_AUC": 0.38357916764254885,
+      "Brier_Score": 0.12446906417608261,
+      "Threshold": 0.4,
+      "TP": 88,
+      "FP": 221,
+      "TN": 676,
+      "FN": 32
+    },
+    "DeepTabularMLP": {
+      "Accuracy": 0.7286135693215339,
+      "Balanced_Accuracy": 0.737876254180602,
+      "Precision_Late": 0.26785714285714285,
+      "Recall_Late": 0.75,
+      "Specificity": 0.725752508361204,
+      "F1_Late": 0.39473684210526316,
+      "F1_Macro": 0.6099159495697418,
+      "ROC_AUC": 0.7396739130434783,
+      "PR_AUC": 0.24261917519383802,
+      "Brier_Score": 0.15182635188102722,
+      "Threshold": 0.45999999999999996,
+      "TP": 90,
+      "FP": 246,
+      "TN": 651,
+      "FN": 30
+    },
+    "BiLSTM": {
+      "Accuracy": 0.6981317600786627,
+      "Balanced_Accuracy": 0.7314241917502787,
+      "Precision_Late": 0.24932975871313673,
+      "Recall_Late": 0.775,
+      "Specificity": 0.6878483835005574,
+      "F1_Late": 0.3772819472616633,
+      "F1_Macro": 0.5890303311908576,
+      "ROC_AUC": 0.7758314752879969,
+      "PR_AUC": 0.28657020650191306,
+      "Brier_Score": 0.12117365747690201,
+      "Threshold": 0.22,
+      "TP": 93,
+      "FP": 280,
+      "TN": 617,
+      "FN": 27
+    },
+    "HybridLSTMTransformer": {
+      "Accuracy": 0.7069813176007866,
+      "Balanced_Accuracy": 0.7364409141583055,
+      "Precision_Late": 0.2554945054945055,
+      "Recall_Late": 0.775,
+      "Specificity": 0.6978818283166109,
+      "F1_Late": 0.384297520661157,
+      "F1_Macro": 0.596019728072514,
+      "ROC_AUC": 0.7664947974730584,
+      "PR_AUC": 0.24742590503881895,
+      "Brier_Score": 0.13101738691329956,
+      "Threshold": 0.21000000000000002,
+      "TP": 93,
+      "FP": 271,
+      "TN": 626,
+      "FN": 27
+    },
+    "Tabular1DCNN": {
+      "Accuracy": 0.6873156342182891,
+      "Balanced_Accuracy": 0.7252926421404682,
+      "Precision_Late": 0.2421875,
+      "Recall_Late": 0.775,
+      "Specificity": 0.6755852842809364,
+      "F1_Late": 0.36904761904761907,
+      "F1_Macro": 0.5806022408963585,
+      "ROC_AUC": 0.7404171311780007,
+      "PR_AUC": 0.2668229331975007,
+      "Brier_Score": 0.14596617221832275,
+      "Threshold": 0.31,
+      "TP": 93,
+      "FP": 291,
+      "TN": 606,
+      "FN": 27
+    }
+  },
+  "qos_metrics": [
+    {
+      "Model": "LogisticRegression",
+      "Total_Parameters": 0,
+      "Trainable_Parameters": 0,
+      "Disk_Size_MB": 0.002,
+      "Latency_Mean_ms": 0.0738,
+      "Latency_P50_ms": 0.0634,
+      "Latency_P95_ms": 0.1111,
+      "Latency_P99_ms": 0.1285,
+      "Throughput_BS1_samples_per_sec": 14073.41,
+      "Throughput_BS16_samples_per_sec": 248004.34,
+      "Throughput_BS64_samples_per_sec": 947614.68
+    },
+    {
+      "Model": "RandomForest",
+      "Total_Parameters": 0,
+      "Trainable_Parameters": 0,
+      "Disk_Size_MB": 5.749,
+      "Latency_Mean_ms": 27.5719,
+      "Latency_P50_ms": 25.6326,
+      "Latency_P95_ms": 47.5763,
+      "Latency_P99_ms": 51.4448,
+      "Throughput_BS1_samples_per_sec": 39.64,
+      "Throughput_BS16_samples_per_sec": 640.36,
+      "Throughput_BS64_samples_per_sec": 2439.6
+    },
+    {
+      "Model": "XGBoost",
+      "Total_Parameters": 0,
+      "Trainable_Parameters": 0,
+      "Disk_Size_MB": 0.38,
+      "Latency_Mean_ms": 0.3543,
+      "Latency_P50_ms": 0.3332,
+      "Latency_P95_ms": 0.4426,
+      "Latency_P99_ms": 0.9183,
+      "Throughput_BS1_samples_per_sec": 3082.25,
+      "Throughput_BS16_samples_per_sec": 36232.05,
+      "Throughput_BS64_samples_per_sec": 108133.5
+    },
+    {
+      "Model": "DeepTabularMLP",
+      "Total_Parameters": 236225,
+      "Trainable_Parameters": 236225,
+      "Disk_Size_MB": 0.911,
+      "Latency_Mean_ms": 0.6423,
+      "Latency_P50_ms": 0.66,
+      "Latency_P95_ms": 0.9891,
+      "Latency_P99_ms": 1.4525,
+      "Throughput_BS1_samples_per_sec": 1561.39,
+      "Throughput_BS16_samples_per_sec": 21188.97,
+      "Throughput_BS64_samples_per_sec": 70299.23
+    },
+    {
+      "Model": "BiLSTM",
+      "Total_Parameters": 223618,
+      "Trainable_Parameters": 223618,
+      "Disk_Size_MB": 0.863,
+      "Latency_Mean_ms": 1.2457,
+      "Latency_P50_ms": 1.2544,
+      "Latency_P95_ms": 1.6807,
+      "Latency_P99_ms": 1.9791,
+      "Throughput_BS1_samples_per_sec": 727.38,
+      "Throughput_BS16_samples_per_sec": 10006.62,
+      "Throughput_BS64_samples_per_sec": 29507.61
+    },
+    {
+      "Model": "HybridLSTMTransformer",
+      "Total_Parameters": 118466,
+      "Trainable_Parameters": 118466,
+      "Disk_Size_MB": 0.465,
+      "Latency_Mean_ms": 1.4697,
+      "Latency_P50_ms": 1.3879,
+      "Latency_P95_ms": 2.5056,
+      "Latency_P99_ms": 3.7113,
+      "Throughput_BS1_samples_per_sec": 645.1,
+      "Throughput_BS16_samples_per_sec": 8176.17,
+      "Throughput_BS64_samples_per_sec": 26747.04
+    },
+    {
+      "Model": "Tabular1DCNN",
+      "Total_Parameters": 72321,
+      "Trainable_Parameters": 72321,
+      "Disk_Size_MB": 0.284,
+      "Latency_Mean_ms": 0.2436,
+      "Latency_P50_ms": 0.1873,
+      "Latency_P95_ms": 0.4154,
+      "Latency_P99_ms": 0.5746,
+      "Throughput_BS1_samples_per_sec": 5154.88,
+      "Throughput_BS16_samples_per_sec": 17013.39,
+      "Throughput_BS64_samples_per_sec": 45234.73
+    }
+  ],
+  "health_equity": {
+    "LogisticRegression": {
+      "Model": "LogisticRegression",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.1735,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.2272
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.6173,
+          "Recall": 0.9348,
+          "Precision": 0.1541,
+          "F1": 0.2646,
+          "ROC_AUC": 0.7062
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.5927,
+          "Recall": 0.7887,
+          "Precision": 0.381,
+          "F1": 0.5138,
+          "ROC_AUC": 0.6455
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7887,
+      "Statistical_Parity_Difference": 0.4192,
+      "Disparate_Impact_Ratio": 3.4161
+    },
+    "RandomForest": {
+      "Model": "RandomForest",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.3004
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.4491,
+          "Recall": 0.7609,
+          "Precision": 0.1724,
+          "F1": 0.2811,
+          "ROC_AUC": 0.7709
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.4073,
+          "Recall": 0.7042,
+          "Precision": 0.495,
+          "F1": 0.5814,
+          "ROC_AUC": 0.7383
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7042,
+      "Statistical_Parity_Difference": 0.4073,
+      "Disparate_Impact_Ratio": 1.0
+    },
+    "XGBoost": {
+      "Model": "XGBoost",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.3992
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.4358,
+          "Recall": 0.7609,
+          "Precision": 0.1777,
+          "F1": 0.2881,
+          "ROC_AUC": 0.7306
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.4516,
+          "Recall": 0.7465,
+          "Precision": 0.4732,
+          "F1": 0.5792,
+          "ROC_AUC": 0.7577
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7465,
+      "Statistical_Parity_Difference": 0.4516,
+      "Disparate_Impact_Ratio": 1.0
+    },
+    "DeepTabularMLP": {
+      "Model": "DeepTabularMLP",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.1242
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.5044,
+          "Recall": 0.8696,
+          "Precision": 0.1754,
+          "F1": 0.292,
+          "ROC_AUC": 0.7174
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.4355,
+          "Recall": 0.7042,
+          "Precision": 0.463,
+          "F1": 0.5587,
+          "ROC_AUC": 0.6811
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7042,
+      "Statistical_Parity_Difference": 0.4355,
+      "Disparate_Impact_Ratio": 1.0
+    },
+    "BiLSTM": {
+      "Model": "BiLSTM",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.2251
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.542,
+          "Recall": 0.913,
+          "Precision": 0.1714,
+          "F1": 0.2887,
+          "ROC_AUC": 0.6938
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.5161,
+          "Recall": 0.7183,
+          "Precision": 0.3984,
+          "F1": 0.5126,
+          "ROC_AUC": 0.709
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7183,
+      "Statistical_Parity_Difference": 0.5161,
+      "Disparate_Impact_Ratio": 1.0
+    },
+    "HybridLSTMTransformer": {
+      "Model": "HybridLSTMTransformer",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.3662
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.5619,
+          "Recall": 0.9348,
+          "Precision": 0.1693,
+          "F1": 0.2867,
+          "ROC_AUC": 0.693
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.4435,
+          "Recall": 0.7042,
+          "Precision": 0.4545,
+          "F1": 0.5525,
+          "ROC_AUC": 0.6934
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7042,
+      "Statistical_Parity_Difference": 0.4435,
+      "Disparate_Impact_Ratio": 1.0
+    },
+    "Tabular1DCNN": {
+      "Model": "Tabular1DCNN",
+      "Tier_Metrics": {
+        "Tier_1_Low_Risk_Hub": {
+          "Samples": 317,
+          "Base_Late_Rate": 0.0095,
+          "Selection_Rate": 0.0284,
+          "Recall": 0.0,
+          "Precision": 0.0,
+          "F1": 0.0,
+          "ROC_AUC": 0.2059
+        },
+        "Tier_2_Moderate_Risk": {
+          "Samples": 452,
+          "Base_Late_Rate": 0.1018,
+          "Selection_Rate": 0.5819,
+          "Recall": 0.913,
+          "Precision": 0.1597,
+          "F1": 0.2718,
+          "ROC_AUC": 0.653
+        },
+        "Tier_3_High_Risk_Underserved": {
+          "Samples": 248,
+          "Base_Late_Rate": 0.2863,
+          "Selection_Rate": 0.4516,
+          "Recall": 0.7183,
+          "Precision": 0.4554,
+          "F1": 0.5574,
+          "ROC_AUC": 0.7073
+        }
+      },
+      "Equal_Opportunity_Difference": 0.7183,
+      "Statistical_Parity_Difference": 0.4232,
+      "Disparate_Impact_Ratio": 15.9014
+    }
+  }
+}

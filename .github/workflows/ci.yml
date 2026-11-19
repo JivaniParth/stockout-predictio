@@ -1,0 +1,68 @@
+name: HSCM CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest optuna shap locust onnxscript
+
+      - name: Syntax and Style Linting
+        run: |
+          # Basic syntax verification
+          python -m py_compile src/data/*.py
+          python -m py_compile src/models/*.py
+          python -m py_compile src/evaluation/*.py
+          python -m py_compile src/deployment/*.py
+
+      - name: Run Test Suite (Including Leakage Guard & Export Parity)
+        run: |
+          pytest tests/ -v --maxfail=1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Container Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: hscm-prediction-api:ci-test
+          load: true
+
+      - name: Smoke-Test Container Execution
+        run: |
+          docker run -d --name hscm-smoke -p 8000:8000 hscm-prediction-api:ci-test
+          sleep 12
+          # Verify liveness
+          curl -f http://localhost:8000/health || exit 1
+          # Verify readiness
+          curl -f http://localhost:8000/ready || exit 1
+          # Verify prometheus metrics
+          curl -f http://localhost:8000/metrics || exit 1
+          # Verify prediction endpoint
+          curl -f -X POST http://localhost:8000/predict \
+            -H "Content-Type: application/json" \
+            -d '{"Country":"Congo, DRC","Scheduled_Delivery_Date":"2015-11-20","PO_Sent_to_Vendor_Date":"2015-08-01","Product_Group":"ARV","Sub_Classification":"Adult","Shipment_Mode":"Air","Fulfill_Via":"Direct Drop","Vendor_INCO_Term":"CIP","Vendor":"Aurobindo Pharma Limited","Manufacturing_Site":"Aurobindo Unit III, India","First_Line_Designation":"Yes","Line_Item_Quantity":25000.0,"Line_Item_Value":125000.0,"Pack_Price":5.0,"Unit_Price":0.08,"Unit_of_Measure_Per_Pack":60.0}' \
+            || exit 1
+          docker stop hscm-smoke

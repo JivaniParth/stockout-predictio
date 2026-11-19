@@ -1,0 +1,36 @@
+# Health Equity Tier Categorization for Pharmaceutical Supply Chain
+# Criterion:
+# Stratification derived from historical delivery delay rates, multilateral supply chain fragility,
+# and logistical infrastructure gradients across sub-Saharan Africa, Latin America, and Asia
+# established in the systematic review paper.
+# - Tier 1 (Low-Risk Logistics Hubs): High clearance velocity, well-developed highway/port infrastructure, lower delay volatility.
+# - Tier 3 (High-Risk Underserved / Fragile Corridors): Landlocked corridors, severe customs bottlenecks, protracted port demurrage, fragile healthcare logistics.
+# - Tier 2 (Moderate-Risk Transit Nodes): Regional distribution hubs and intermediate infrastructure resilience.
+
+criterion: "Historical delivery delay rates and logistical infrastructure gradients in public health supply chains"
+
+tiers:
+  Tier_1_Low_Risk_Hub:
+    description: "Low-Risk Logistics Hubs with mature freight infrastructure"
+    countries:
+      - "South Africa"
+      - "Vietnam"
+      - "Ethiopia"
+      - "Namibia"
+      - "Botswana"
+      - "Dominican Republic"
+      - "Guatemala"
+  Tier_3_High_Risk_Underserved:
+    description: "High-Risk Underserved corridors and fragile states"
+    countries:
+      - "Burundi"
+      - "Congo, DRC"
+      - "Mozambique"
+      - "Zambia"
+      - "South Sudan"
+      - "Togo"
+      - "Senegal"
+      - "Cameroon"
+  Tier_2_Moderate_Risk:
+    description: "Moderate-Risk transit nodes and regional facilities (default fallback)"
+    countries: []

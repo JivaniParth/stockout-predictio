@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # 1. FastAPI REST Microservice
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hscm_api
+    restart: unless-stopped
+    command: ["uvicorn", "src.deployment.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+    environment:
+      - PORT=8000
+      - DEVICE=cpu
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://hscm_admin:hscm_secure_pass@postgres:5432/hscm_db
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      - redis
+      - postgres
+
+  # 2. Streamlit Operations Dashboard
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hscm_streamlit_ui
+    restart: unless-stopped
+    command: ["streamlit", "run", "app_streamlit.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    environment:
+      - API_URL=http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+
+  # 3. Prometheus Monitoring Engine
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: hscm_prometheus
+    restart: unless-stopped
+    volumes:
+      - ./deploy/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+
+  # 4. Grafana Visual Dashboard
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: hscm_grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+  # 5. Redis Distributed L2 Cache
+  redis:
+    image: redis:7-alpine
+    container_name: hscm_redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+
+  # 6. PostgreSQL Relational Audit Store
+  postgres:
+    image: postgres:16-alpine
+    container_name: hscm_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hscm_db
+      POSTGRES_USER: hscm_admin
+      POSTGRES_PASSWORD: hscm_secure_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  prometheus_data:
+  grafana_data:
+  postgres_data:
