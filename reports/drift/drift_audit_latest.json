@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-11-19T09:21:23.429488Z",
+  "n_reference": 7779,
+  "n_current": 2545,
+  "features": {
+    "Line Item Quantity": {
+      "psi": 0.1882,
+      "ks_statistic": 0.147,
+      "ks_pvalue": 0.0,
+      "is_critical": true
+    },
+    "Line Item Value": {
+      "psi": 0.1085,
+      "ks_statistic": 0.1173,
+      "ks_pvalue": 0.0,
+      "is_critical": true
+    },
+    "Pack Price": {
+      "psi": 0.1759,
+      "ks_statistic": 0.0788,
+      "ks_pvalue": 0.0,
+      "is_critical": true
+    },
+    "Unit Price": {
+      "psi": 0.1146,
+      "ks_statistic": 0.0793,
+      "ks_pvalue": 0.0,
+      "is_critical": true
+    },
+    "Weight (Kilograms)": {
+      "psi": 0.0955,
+      "ks_statistic": 0.1361,
+      "ks_pvalue": 0.0,
+      "is_critical": true
+    }
+  },
+  "alert_triggered": true,
+  "critical_drift_count": 5
+}

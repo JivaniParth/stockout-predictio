@@ -16,7 +16,17 @@ import uuid
 from fastapi import FastAPI, Header, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response as PlainResponse
-from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+try:
+    from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+except ImportError:
+    class DummyMetric:
+        def __init__(self, *args, **kwargs): pass
+        def labels(self, *args, **kwargs): return self
+        def inc(self, *args, **kwargs): pass
+        def observe(self, *args, **kwargs): pass
+    Counter = Histogram = DummyMetric
+    generate_latest = lambda: b""
+    CONTENT_TYPE_LATEST = "text/plain"
 import psutil
 import uvicorn
 
@@ -252,6 +262,11 @@ def predict_single(
     3. Calibrated probability and per-tier threshold alert.
     4. Optional top-k feature attribution.
     """
+    # Unbox Query parameters if called directly outside FastAPI dependency injection
+    if hasattr(explain, "default"):
+        explain = bool(explain.default)
+    if hasattr(top_k, "default"):
+        top_k = int(top_k.default)
     t_start = time.perf_counter()
     REQ_COUNT.labels(endpoint="/predict", method="POST").inc()
 
