@@ -54,7 +54,7 @@ def test_champion_selection_scoring(tmp_path):
 
 
 def test_onnx_torchscript_export_and_parity(tmp_path):
-    input_dim = 15
+    input_dim = 32
     model = Tabular1DCNN(input_dim=input_dim, dropout_rate=0.0)
     sample_input = np.random.randn(20, input_dim).astype(np.float32)
 

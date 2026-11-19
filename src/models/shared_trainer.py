@@ -49,8 +49,11 @@ class SharedTrainer:
         device: Optional[torch.device] = None,
         checkpoint_dir: Optional[Path] = None,
         seed: int = 42,
+        require_gpu: bool = False,
     ):
         self.device = device or (torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"))
+        if require_gpu and self.device.type != "cuda":
+            raise RuntimeError(f"--require-gpu failed loudly: GPU requested for {model_name} but resolved to {self.device}.")
         self.model = model.to(self.device)
         self.model_name = model_name
         self.gradient_clip = gradient_clip
@@ -91,10 +94,11 @@ class SharedTrainer:
     def train_epoch(self, dataloader: DataLoader) -> float:
         self.model.train()
         total_loss = 0.0
+        pin = (self.device.type == "cuda")
 
         for X_batch, y_batch in dataloader:
-            X_batch = X_batch.to(self.device)
-            y_batch = y_batch.to(self.device)
+            X_batch = X_batch.to(self.device, non_blocking=pin)
+            y_batch = y_batch.to(self.device, non_blocking=pin)
 
             self.optimizer.zero_grad()
 
@@ -125,11 +129,12 @@ class SharedTrainer:
         total_loss = 0.0
         all_preds: List[float] = []
         all_targets: List[float] = []
+        pin = (self.device.type == "cuda")
 
         with torch.no_grad():
             for X_batch, y_batch in dataloader:
-                X_batch = X_batch.to(self.device)
-                y_batch = y_batch.to(self.device)
+                X_batch = X_batch.to(self.device, non_blocking=pin)
+                y_batch = y_batch.to(self.device, non_blocking=pin)
 
                 if self.use_amp:
                     with torch.amp.autocast("cuda"):

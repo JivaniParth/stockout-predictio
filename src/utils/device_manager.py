@@ -154,12 +154,14 @@ def probe_catboost_gpu() -> Tuple[bool, str]:
 
     try:
         import catboost as cb
+        import tempfile
         X = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=np.float32)
         y = np.array([0, 1])
         clf = cb.CatBoostClassifier(
             iterations=1,
             depth=1,
             task_type="GPU",
+            train_dir=tempfile.gettempdir(),
             verbose=False,
             random_seed=42,
         )
@@ -211,8 +213,9 @@ class DeviceManager:
     optimal parameter resolution, and hardware telemetry.
     """
 
-    def __init__(self, preferred: str = "auto"):
+    def __init__(self, preferred: str = "auto", require_gpu: bool = False):
         self.preferred = preferred.lower()
+        self.require_gpu = require_gpu
         self.sys_gpu = detect_system_gpu()
         self.cpu_cores = os.cpu_count() or 4
 
@@ -234,6 +237,17 @@ class DeviceManager:
             self.xgb_gpu, self.xgb_msg = probe_xgboost_gpu()
             self.cb_gpu, self.cb_msg = probe_catboost_gpu()
             self.lgb_gpu, self.lgb_msg = probe_lightgbm_gpu()
+
+        if self.require_gpu:
+            errors = []
+            if not torch.cuda.is_available():
+                errors.append(f"PyTorch CUDA is unavailable (torch={torch.__version__})")
+            if not self.xgb_gpu:
+                errors.append(f"XGBoost GPU failed: {self.xgb_msg}")
+            if not self.cb_gpu:
+                errors.append(f"CatBoost GPU failed: {self.cb_msg}")
+            if errors:
+                raise RuntimeError("--require-gpu failed loudly: " + " | ".join(errors))
 
     def get_torch_device(self) -> torch.device:
         """Returns resolved PyTorch torch.device."""

@@ -773,6 +773,7 @@ class TabularKnowledgeDistillationTrainer:
         patience: int = 8,
         batch_size: int = 64,
         verbose: bool = True,
+        require_gpu: bool = False,
     ):
         # Resolve device
         if device is None:
@@ -781,6 +782,9 @@ class TabularKnowledgeDistillationTrainer:
             self.device = torch.device(device)
         else:
             self.device = device
+
+        if require_gpu and self.device.type != "cuda":
+            raise RuntimeError(f"--require-gpu failed loudly: GPU requested for {model_name} but resolved to {self.device}.")
 
         self.seed = seed
         torch.manual_seed(seed)
