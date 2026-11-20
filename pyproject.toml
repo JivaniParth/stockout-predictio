@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scms-stockout-prediction"
+version = "3.0.0"
+description = "Scalable Cloud-Native Healthcare Supply Chain Medicine Stockout Prediction Platform"
+authors = [
+    { name = "Parth Jivani", email = "230303107002@nuv.ac.in" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.1.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.3.0",
+    "xgboost>=2.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "pydantic>=2.0.0",
+    "PyYAML>=6.0.0",
+    "streamlit>=1.30.0",
+    "plotly>=5.15.0",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "docs/archive",
+    "results",
+    "artifacts",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line length handled by black/formatter
+    "E402",  # module level import not at top of file
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --strict-markers"
