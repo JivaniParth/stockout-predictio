@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: hscm_api
     restart: unless-stopped
-    command: ["uvicorn", "src.deployment.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+    command: ["python", "main.py", "serve", "--host", "0.0.0.0", "--port", "8000"]
     environment:
       - PORT=8000
       - DEVICE=cpu
@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile
     container_name: hscm_streamlit_ui
     restart: unless-stopped
-    command: ["streamlit", "run", "app_streamlit.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    command: ["python", "main.py", "ui", "--port", "8501"]
     environment:
       - API_URL=http://api:8000
     ports:
