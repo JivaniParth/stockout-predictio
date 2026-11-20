@@ -1,0 +1,14 @@
+{
+  "initial_row_count": 10324,
+  "duplicates_removed": 0,
+  "date_not_captured_detected": 533,
+  "see_asn_dn_detected": 1016,
+  "unparseable_target_dates_dropped": 0,
+  "uncomputable_label_dropped": 0,
+  "final_cleaned_row_count": 10324,
+  "class_distribution": {
+    "on_time_0": 9138,
+    "late_delay_1": 1186,
+    "delay_rate": 0.11487795428128632
+  }
+}
