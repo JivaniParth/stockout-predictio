@@ -237,9 +237,17 @@ def cmd_ui(args):
     if not Path(ui_script).exists():
         ui_script = "app_streamlit.py"
 
-    logger.info(f"Starting Streamlit dashboard from {ui_script} on port {port} ...")
+    python_bin = sys.executable
+    try:
+        import streamlit
+    except ImportError:
+        py314 = Path("C:/Program Files/Python314/python.exe")
+        if py314.exists():
+            python_bin = str(py314)
+
+    logger.info(f"Starting Streamlit dashboard from {ui_script} on port {port} using {python_bin} ...")
     cmd = [
-        sys.executable,
+        python_bin,
         "-m",
         "streamlit",
         "run",
