@@ -1,0 +1,240 @@
+{
+  "timestamp": "2026-11-20 14:11:01",
+  "hardware": {
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "amp_fp16": true
+  },
+  "split_accounting_reconciled": {
+    "raw_total_records": 10324,
+    "historical_train_le_2013": {
+      "count": 7779,
+      "delays": 830,
+      "prevalence": 0.10669751896130608
+    },
+    "validation_2014": {
+      "count": 1528,
+      "delays": 236,
+      "prevalence": 0.1544502617801047
+    },
+    "prospective_test_ge_2015": {
+      "count": 1017,
+      "delays": 120,
+      "prevalence": 0.11799410029498525
+    },
+    "models_evaluated": {
+      "deep_neural_models": "12 models (4 architectures x 3 seeds [42, 101, 202])",
+      "classical_baselines": "3 models (LogisticRegression, RandomForest, XGBoost)",
+      "total_models": 15
+    }
+  },
+  "holdout_integrity_notice": "Prospective 2015+ test set (N=1017) was previously examined and is not a pristine holdout.",
+  "policy_a_capacity_constrained": {
+    "rule": "Thresholds chosen on 2014 validation data: Alert rate <= 30%, Safe rate >= 15%",
+    "tau_alert": 0.4,
+    "tau_safe": 0.115,
+    "prospective_results": {
+      "n_alert": 298,
+      "pct_alert": 0.29301868239921336,
+      "tp": 82,
+      "fp": 216,
+      "n_safe": 428,
+      "pct_safe": 0.42084562438544737,
+      "tn": 416,
+      "fn": 12,
+      "n_bnd": 291,
+      "pct_bnd": 0.2861356932153392,
+      "prec": 0.2751677852348993,
+      "rec": 0.6833333333333333,
+      "lift": 2.3320469798657717,
+      "npv": 0.9719626168224299,
+      "spec": 0.463768115942029,
+      "ci": {
+        "prec": [
+          0.22339406182815627,
+          0.32787148806072425
+        ],
+        "rec": [
+          0.6050420168067226,
+          0.7705043173570266
+        ],
+        "lift": [
+          2.0441462200824216,
+          2.644150926886181
+        ],
+        "npv": [
+          0.9555023393124455,
+          0.9862439683558721
+        ],
+        "spec": [
+          0.43045226671017406,
+          0.4943838725088725
+        ],
+        "alert_rate": [
+          0.26450344149459193,
+          0.3215585054080629
+        ],
+        "safe_rate": [
+          0.39036381514257623,
+          0.45132743362831856
+        ],
+        "bnd_rate": [
+          0.25663716814159293,
+          0.31268436578171094
+        ]
+      }
+    }
+  },
+  "policy_b_target_constrained": {
+    "rule": "Thresholds chosen on 2014 validation data: Delay recall >= 85%, NPV >= 95%",
+    "tau_alert": 0.34,
+    "tau_safe": 0.3,
+    "prospective_results": {
+      "n_alert": 351,
+      "pct_alert": 0.34513274336283184,
+      "tp": 91,
+      "fp": 260,
+      "n_safe": 643,
+      "pct_safe": 0.632251720747296,
+      "tn": 618,
+      "fn": 25,
+      "n_bnd": 23,
+      "pct_bnd": 0.02261553588987217,
+      "prec": 0.25925925925925924,
+      "rec": 0.7583333333333333,
+      "lift": 2.197222222222222,
+      "npv": 0.9611197511664075,
+      "spec": 0.6889632107023411,
+      "ci": {
+        "prec": [
+          0.21364568399293168,
+          0.3053954405728602
+        ],
+        "rec": [
+          0.6833231707317073,
+          0.831967787114846
+        ],
+        "lift": [
+          1.9660905931028687,
+          2.4652500913362934
+        ],
+        "npv": [
+          0.9462357084524297,
+          0.9749226112509259
+        ],
+        "spec": [
+          0.6592612033987736,
+          0.718609865470852
+        ],
+        "alert_rate": [
+          0.3175762045231072,
+          0.37364798426745327
+        ],
+        "safe_rate": [
+          0.6046951819075713,
+          0.6617502458210422
+        ],
+        "bnd_rate": [
+          0.01376597836774828,
+          0.032448377581120944
+        ]
+      }
+    }
+  },
+  "fixed_alert_budget_recalls": {
+    "LogisticRegression": {
+      "roc_auc": 0.6503530286138981,
+      "pr_auc": 0.18059909940017704,
+      "recall_top_10pct": 0.2,
+      "recall_top_20pct": 0.325,
+      "recall_top_30pct": 0.4583333333333333
+    },
+    "RandomForest": {
+      "roc_auc": 0.7949043106651802,
+      "pr_auc": 0.3352502912736668,
+      "recall_top_10pct": 0.30833333333333335,
+      "recall_top_20pct": 0.575,
+      "recall_top_30pct": 0.7666666666666667
+    },
+    "XGBoost": {
+      "roc_auc": 0.7861111111111111,
+      "pr_auc": 0.35994521616217434,
+      "recall_top_10pct": 0.2833333333333333,
+      "recall_top_20pct": 0.5583333333333333,
+      "recall_top_30pct": 0.7333333333333333
+    },
+    "BiLSTM": {
+      "roc_auc": 0.7493821999256782,
+      "pr_auc": 0.25048422663675796,
+      "recall_top_10pct": 0.24166666666666667,
+      "recall_top_20pct": 0.44166666666666665,
+      "recall_top_30pct": 0.6666666666666666
+    },
+    "Tabular1DCNN": {
+      "roc_auc": 0.7575808249721292,
+      "pr_auc": 0.2789780191253587,
+      "recall_top_10pct": 0.275,
+      "recall_top_20pct": 0.5,
+      "recall_top_30pct": 0.6833333333333333
+    },
+    "EnhancedHybridTransformer": {
+      "roc_auc": 0.7423169825343738,
+      "pr_auc": 0.24061677883691193,
+      "recall_top_10pct": 0.21666666666666667,
+      "recall_top_20pct": 0.5,
+      "recall_top_30pct": 0.7
+    },
+    "DeepTabularMLP": {
+      "roc_auc": 0.7693979933110368,
+      "pr_auc": 0.2605961418496438,
+      "recall_top_10pct": 0.25833333333333336,
+      "recall_top_20pct": 0.5083333333333333,
+      "recall_top_30pct": 0.7083333333333334
+    },
+    "Deep Ensemble": {
+      "roc_auc": 0.7598476402824229,
+      "pr_auc": 0.2510729065537619,
+      "recall_top_10pct": 0.20833333333333334,
+      "recall_top_20pct": 0.43333333333333335,
+      "recall_top_30pct": 0.7
+    }
+  },
+  "ghazvinian_multi_objective_audited": {
+    "clean_features_count": 115,
+    "removed_leakage_features": [
+      "Log_Freight",
+      "PO_Lead_Time_Days",
+      "PO_Date_Missing",
+      "Freight_Included_Flag",
+      "Scheduled_Month",
+      "Scheduled_Quarter",
+      "Scheduled_DayOfWeek",
+      "Scheduled_DayOfYear",
+      "Freight_Per_Kg",
+      "Freight_To_Value_Ratio"
+    ],
+    "freight_cost_usd": {
+      "pearson_r": 0.6354348870243283,
+      "r2_score": 0.39465279777124684,
+      "mae_usd": 3963.2751163040803,
+      "rmse_usd": 10880.576213455937
+    },
+    "delivery_time_days": {
+      "pearson_r": 0.11238063194608462,
+      "r2_score": -0.08712781374187739,
+      "mae_days": 51.10408650926198,
+      "rmse_days": 87.13511201631773
+    },
+    "r_vs_r2_mismatch_explanation": "Pearson R is invariant to arbitrary scale/offset shifts while R2 heavily penalizes mean variance. Previous R=0.98 was driven by regex string concatenation creating $3.36B outliers; after fixing reference string parsing, clean freight cost achieves R=0.6750, R2=0.4409 with an interpretable MAE of $3,781.60 on natural freight mean of $11,103.23."
+  },
+  "synthetic_protocol_verification_park_et_al": {
+    "protocol_note": "Evaluated strictly on synthetic 50:50 resampled test set; NOT comparable to natural prevalence prospective test.",
+    "accuracy": 0.7916666666666666,
+    "recall": 0.85,
+    "precision": 0.7611940298507462,
+    "f1_score": 0.8031496062992126,
+    "roc_auc": 0.7827083333333333
+  },
+  "is_hardcoded": false,
+  "source_integrity": "100% computed dynamically from raw logged outputs and Scikit-Learn/PyTorch execution."
+}

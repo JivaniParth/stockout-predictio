@@ -1,0 +1,136 @@
+{
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "prospective_test_models": {
+    "BiLSTM": {
+      "Validation_ROC_AUC": 0.8129099543474838,
+      "Test_ROC_AUC": 0.7546451133407657,
+      "Test_PR_AUC": 0.2533541713163401,
+      "Clinical_Early_Warning_Policy_Gte_85": {
+        "Threshold": 0.25747474747474747,
+        "Delay_Recall_Catch_Rate": 0.8166666666666667,
+        "Overall_Accuracy": 0.6794493608652901,
+        "F1_Score": 0.37547892720306514,
+        "Target_Gte_85_Achieved": false
+      },
+      "High_Accuracy_Policy_Gte_85": {
+        "Threshold": 0.5,
+        "Overall_Accuracy": 0.8289085545722714,
+        "Delay_Recall": 0.23333333333333334,
+        "F1_Score": 0.24347826086956523,
+        "Target_Gte_85_Achieved": false
+      },
+      "Balanced_Accuracy_Policy": {
+        "Threshold": 0.31686868686868686,
+        "Balanced_Accuracy": 0.7322742474916388,
+        "Delay_Recall": 0.7666666666666667,
+        "Specificity": 0.6978818283166109
+      }
+    },
+    "Tabular1DCNN": {
+      "Validation_ROC_AUC": 0.7802087159573909,
+      "Test_ROC_AUC": 0.7270903010033445,
+      "Test_PR_AUC": 0.21609488817624106,
+      "Clinical_Early_Warning_Policy_Gte_85": {
+        "Threshold": 0.31686868686868686,
+        "Delay_Recall_Catch_Rate": 0.825,
+        "Overall_Accuracy": 0.6450344149459194,
+        "F1_Score": 0.3542039355992844,
+        "Target_Gte_85_Achieved": false
+      },
+      "High_Accuracy_Policy_Gte_85": {
+        "Threshold": 0.5,
+        "Overall_Accuracy": 0.8338249754178958,
+        "Delay_Recall": 0.23333333333333334,
+        "F1_Score": 0.24888888888888888,
+        "Target_Gte_85_Achieved": false
+      },
+      "Balanced_Accuracy_Policy": {
+        "Threshold": 0.2871717171717172,
+        "Balanced_Accuracy": 0.7168199554069119,
+        "Delay_Recall": 0.8416666666666667,
+        "Specificity": 0.5919732441471572
+      }
+    },
+    "EnhancedHybridTransformer": {
+      "Validation_ROC_AUC": 0.8102731279844676,
+      "Test_ROC_AUC": 0.7692958008175399,
+      "Test_PR_AUC": 0.26679578033599416,
+      "Clinical_Early_Warning_Policy_Gte_85": {
+        "Threshold": 0.25747474747474747,
+        "Delay_Recall_Catch_Rate": 0.8083333333333333,
+        "Overall_Accuracy": 0.696165191740413,
+        "F1_Score": 0.3856858846918489,
+        "Target_Gte_85_Achieved": false
+      },
+      "High_Accuracy_Policy_Gte_85": {
+        "Threshold": 0.5,
+        "Overall_Accuracy": 0.823992133726647,
+        "Delay_Recall": 0.225,
+        "F1_Score": 0.2317596566523605,
+        "Target_Gte_85_Achieved": false
+      },
+      "Balanced_Accuracy_Policy": {
+        "Threshold": 0.22777777777777777,
+        "Balanced_Accuracy": 0.7494425863991081,
+        "Delay_Recall": 0.8333333333333334,
+        "Specificity": 0.6655518394648829
+      }
+    },
+    "DeepTabularMLP": {
+      "Validation_ROC_AUC": 0.8136839481555335,
+      "Test_ROC_AUC": 0.7488387216648086,
+      "Test_PR_AUC": 0.25029357144507625,
+      "Clinical_Early_Warning_Policy_Gte_85": {
+        "Threshold": 0.207979797979798,
+        "Delay_Recall_Catch_Rate": 0.8333333333333334,
+        "Overall_Accuracy": 0.6951819075712881,
+        "F1_Score": 0.39215686274509803,
+        "Target_Gte_85_Achieved": false
+      },
+      "High_Accuracy_Policy_Gte_85": {
+        "Threshold": 0.5,
+        "Overall_Accuracy": 0.8269419862340216,
+        "Delay_Recall": 0.20833333333333334,
+        "F1_Score": 0.22123893805309736,
+        "Target_Gte_85_Achieved": false
+      },
+      "Balanced_Accuracy_Policy": {
+        "Threshold": 0.15848484848484848,
+        "Balanced_Accuracy": 0.7524944258639911,
+        "Delay_Recall": 0.8416666666666667,
+        "Specificity": 0.6633221850613155
+      }
+    }
+  },
+  "prospective_deep_ensemble": {
+    "Validation_ROC_AUC": 0.810492863514719,
+    "Test_ROC_AUC": 0.7580453363062059,
+    "Test_PR_AUC": 0.25253421316145863,
+    "Policy_A_Clinical_Recall_Gte_85": {
+      "Threshold": 0.2673737373737374,
+      "Delay_Recall_Catch_Rate": 0.825,
+      "Overall_Accuracy": 0.6863323500491643,
+      "F1_Score": 0.3829787234042553,
+      "Target_Gte_85_Achieved": false
+    },
+    "Policy_B_High_Accuracy_Gte_85": {
+      "Threshold": 0.5,
+      "Overall_Accuracy": 0.8298918387413963,
+      "Delay_Recall": 0.20833333333333334,
+      "Target_Gte_85_Achieved": false
+    }
+  },
+  "literature_replication_park_2025_table3": {
+    "Accuracy_Mean": 0.7949424704844492,
+    "Accuracy_Std": 0.022108820519900933,
+    "Precision_Mean": 0.30674652053524165,
+    "Precision_Std": 0.020290569985031204,
+    "Recall_Mean": 0.6087614792752544,
+    "Recall_Std": 0.04514150458999408,
+    "F1_Mean": 0.40624227924154355,
+    "F1_Std": 0.010757489719446503,
+    "AUC_Mean": 0.8135431671773814,
+    "AUC_Std": 0.009853689474546196
+  }
+}

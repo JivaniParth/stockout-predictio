@@ -75,13 +75,17 @@ class HSCMPreprocessor:
 
         df["PO_Date_Missing"] = df["PO_Lead_Time_Days"].isna().astype(int)
 
-        # Clean Weight (regex extraction to handle 'Weight Captured Separately' & references)
-        weight_clean = df["Weight (Kilograms)"].astype(str).str.replace(r"[^0-9.]", "", regex=True)
+        # Clean Weight: Treat non-numeric/reference strings (e.g., 'Weight Captured Separately', 'See ASN...', 'See DN...')
+        # as missing rather than concatenating ID numbers into billions.
+        weight_s = df["Weight (Kilograms)"].astype(str)
+        weight_clean = weight_s.where(~weight_s.str.contains(r"[a-zA-Z]", na=False))
         df["Weight_Clean"] = pd.to_numeric(weight_clean, errors="coerce")
         df["Weight_Missing_Flag"] = df["Weight_Clean"].isna().astype(int)
 
-        # Clean Freight Cost (regex extraction to handle 'Freight Included...' & references)
-        freight_clean = df["Freight Cost (USD)"].astype(str).str.replace(r"[^0-9.]", "", regex=True)
+        # Clean Freight Cost: Treat reference strings ('Freight Included...', 'Invoiced Separately', 'See ASN...', 'See DN...')
+        # as missing rather than concatenating ASN/DN IDs into billions.
+        freight_s = df["Freight Cost (USD)"].astype(str)
+        freight_clean = freight_s.where(~freight_s.str.contains(r"[a-zA-Z]", na=False))
         df["Freight_Clean"] = pd.to_numeric(freight_clean, errors="coerce")
         df["Freight_Included_Flag"] = df["Freight_Clean"].isna().astype(int)
 

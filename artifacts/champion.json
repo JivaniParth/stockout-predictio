@@ -19,38 +19,38 @@
   },
   "accuracy_champion": {
     "model_name": "BiLSTM",
-    "validation_score": 0.891627888284777,
+    "validation_score": 0.8861816105244527,
     "validation_metrics": {
       "PR_AUC": 0.3562,
       "Recall_Late": 0.9237,
       "Max_Min_Recall_Gap": 0.4901,
-      "Latency_P95": 1.125,
+      "Latency_P95": 2.42,
       "Memory_MB": 0.753
     },
     "post_selection_test_metrics": {
       "PR_AUC": 0.2664999835787113,
       "Recall_Late": 0.7496827614574814,
       "Max_Min_Recall_Gap": 0.8478260869565217,
-      "Latency_P95": 1.125,
+      "Latency_P95": 2.42,
       "Memory_MB": 0.753
     }
   },
   "edge_champion": {
-    "model_name": "BiLSTM",
-    "validation_score": 0.9054050023323615,
+    "model_name": "Tabular1DCNN",
+    "validation_score": 0.8892494261301221,
     "validation_metrics": {
-      "PR_AUC": 0.3562,
-      "Recall_Late": 0.9237,
-      "Max_Min_Recall_Gap": 0.4901,
-      "Latency_P95": 1.125,
-      "Memory_MB": 0.753
+      "PR_AUC": 0.3641,
+      "Recall_Late": 0.9068,
+      "Max_Min_Recall_Gap": 0.4604,
+      "Latency_P95": 0.632,
+      "Memory_MB": 0.283
     },
     "post_selection_test_metrics": {
-      "PR_AUC": 0.2664999835787113,
-      "Recall_Late": 0.7496827614574814,
-      "Max_Min_Recall_Gap": 0.8478260869565217,
-      "Latency_P95": 1.125,
-      "Memory_MB": 0.753
+      "PR_AUC": 0.2780619476570114,
+      "Recall_Late": 0.79186575866964,
+      "Max_Min_Recall_Gap": 0.5144927536231885,
+      "Latency_P95": 0.632,
+      "Memory_MB": 0.283
     }
   },
   "all_model_validation_scores": {
@@ -61,62 +61,62 @@
         "PR_AUC": 0.2869,
         "Recall_Late": 0.8602,
         "Max_Min_Recall_Gap": 0.4208,
-        "Latency_P95": 0.089,
+        "Latency_P95": 0.086,
         "Memory_MB": 0.001
       }
     },
     "RandomForest": {
-      "accuracy_score": 0.846995473778605,
-      "edge_score": 0.8455721077435484,
+      "accuracy_score": 0.8493621022407282,
+      "edge_score": 0.8574085836097347,
       "validation_metrics": {
         "PR_AUC": 0.3584,
         "Recall_Late": 0.911,
         "Max_Min_Recall_Gap": 0.4505,
-        "Latency_P95": 2.926,
-        "Memory_MB": 0.076
+        "Latency_P95": 2.359,
+        "Memory_MB": 0.077
       }
     },
     "XGBoost": {
-      "accuracy_score": 0.7359001658682305,
-      "edge_score": 0.8265877486936336,
+      "accuracy_score": 0.7361690639785466,
+      "edge_score": 0.8279322392452145,
       "validation_metrics": {
         "PR_AUC": 0.3452,
         "Recall_Late": 0.8983,
         "Max_Min_Recall_Gap": 0.4208,
-        "Latency_P95": 0.379,
+        "Latency_P95": 0.312,
         "Memory_MB": 0.05
       }
     },
     "HybridLSTMTransformer": {
-      "accuracy_score": 0.663246133040438,
-      "edge_score": 0.7529807562560418,
+      "accuracy_score": 0.659205973585755,
+      "edge_score": 0.7327799589826263,
       "validation_metrics": {
         "PR_AUC": 0.3531,
         "Recall_Late": 0.9068,
         "Max_Min_Recall_Gap": 0.9604,
-        "Latency_P95": 1.323,
+        "Latency_P95": 2.283,
         "Memory_MB": 0.333
       }
     },
     "Tabular1DCNN": {
-      "accuracy_score": 0.8629004407775995,
-      "edge_score": 0.892310934708088,
+      "accuracy_score": 0.8622881390620063,
+      "edge_score": 0.8892494261301221,
       "validation_metrics": {
         "PR_AUC": 0.3641,
         "Recall_Late": 0.9068,
         "Max_Min_Recall_Gap": 0.4604,
-        "Latency_P95": 0.489,
+        "Latency_P95": 0.632,
         "Memory_MB": 0.283
       }
     },
     "BiLSTM": {
-      "accuracy_score": 0.891627888284777,
-      "edge_score": 0.9054050023323615,
+      "accuracy_score": 0.8861816105244527,
+      "edge_score": 0.8781736135307399,
       "validation_metrics": {
         "PR_AUC": 0.3562,
         "Recall_Late": 0.9237,
         "Max_Min_Recall_Gap": 0.4901,
-        "Latency_P95": 1.125,
+        "Latency_P95": 2.42,
         "Memory_MB": 0.753
       }
     },

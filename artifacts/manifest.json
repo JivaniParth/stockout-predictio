@@ -5,16 +5,16 @@
   "int8_artifact": null,
   "numerical_parity_max_diff": 6.705522537231445e-08,
   "model_onnx_sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4",
-  "model_torchscript_sha256": "2c29da3f2c77e30b9873753a6dba6d8b567f5857eb7686371f4777f2121088aa",
+  "model_torchscript_sha256": "ab8bd2a6ffec5b462be44723cc2cf823007de6b241d3d312700b3cdaddd27e2a",
   "preprocessor_sha256": "4027a9101625a8468a60eb8b6dec6950623c091f77d9fc646c680d079a49a142",
   "config_sha256": "1196f18bdff14ea634465802d41301ab122ff9ddba3942bb95cff7d2de5d275a",
-  "git_commit": "ae6d009ff4fac3defade397949152095b19f8cdd",
-  "tau_star": 0.35,
+  "git_commit": "c233f2bac934a3b4ae647d6acae1c7a0ac05436d",
+  "tau_star": 0.43000000000000005,
   "calibrator_type": "isotonic",
   "per_tier_thresholds": {
-    "Tier_1_Low_Risk_Hub": 0.32,
-    "Tier_2_Moderate_Risk": 0.35,
-    "Tier_3_High_Risk_Underserved": 0.25
+    "Tier_1_Low_Risk_Hub": 0.62,
+    "Tier_2_Moderate_Risk": 0.43,
+    "Tier_3_High_Risk_Underserved": 0.28
   },
   "training_date_range": "2006-2013",
   "validation_date_range": "2014",
@@ -27,11 +27,11 @@
       "sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4"
     },
     "edge_champion": {
-      "model_name": "BiLSTM",
-      "onnx_artifact": "BiLSTM.onnx",
-      "torchscript_artifact": "BiLSTM.torchscript.pt",
-      "numerical_parity_max_diff": 6.705522537231445e-08,
-      "sha256": "6f9d9c45def413228438feca9961d6943b303b44071b63f9bbc2c71b3f3141f4"
+      "model_name": "Tabular1DCNN",
+      "onnx_artifact": "Tabular1DCNN.onnx",
+      "torchscript_artifact": "Tabular1DCNN.torchscript.pt",
+      "numerical_parity_max_diff": 7.450580596923828e-08,
+      "sha256": "4fb3bcabf0b3ad3e7cb9aec891e4194b6f07cdbe02a4eb7ed9f3c1ab9e0f4875"
     }
   }
 }

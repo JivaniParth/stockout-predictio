@@ -1,0 +1,135 @@
+{
+  "scoring_rule": "Multi-Attribute Utility Theory (MAUT) on 2014 Validation Split + Measured QoS",
+  "validation_only_scoring": true,
+  "weights": {
+    "accuracy_champion_weights": {
+      "pr_auc": 0.4,
+      "delay_recall": 0.35,
+      "equity_gap": 0.15,
+      "p95_latency": 0.05,
+      "memory_mb": 0.05
+    },
+    "edge_champion_weights": {
+      "pr_auc": 0.2,
+      "delay_recall": 0.25,
+      "p95_latency": 0.25,
+      "memory_mb": 0.2,
+      "equity_gap": 0.1
+    }
+  },
+  "accuracy_champion": {
+    "model_name": "BiLSTM",
+    "validation_score": 0.891627888284777,
+    "validation_metrics": {
+      "PR_AUC": 0.3562,
+      "Recall_Late": 0.9237,
+      "Max_Min_Recall_Gap": 0.4901,
+      "Latency_P95": 1.125,
+      "Memory_MB": 0.753
+    },
+    "post_selection_test_metrics": {
+      "PR_AUC": 0.2664999835787113,
+      "Recall_Late": 0.7496827614574814,
+      "Max_Min_Recall_Gap": 0.8478260869565217,
+      "Latency_P95": 1.125,
+      "Memory_MB": 0.753
+    }
+  },
+  "edge_champion": {
+    "model_name": "BiLSTM",
+    "validation_score": 0.9054050023323615,
+    "validation_metrics": {
+      "PR_AUC": 0.3562,
+      "Recall_Late": 0.9237,
+      "Max_Min_Recall_Gap": 0.4901,
+      "Latency_P95": 1.125,
+      "Memory_MB": 0.753
+    },
+    "post_selection_test_metrics": {
+      "PR_AUC": 0.2664999835787113,
+      "Recall_Late": 0.7496827614574814,
+      "Max_Min_Recall_Gap": 0.8478260869565217,
+      "Latency_P95": 1.125,
+      "Memory_MB": 0.753
+    }
+  },
+  "all_model_validation_scores": {
+    "LogisticRegression": {
+      "accuracy_score": 0.25,
+      "edge_score": 0.55,
+      "validation_metrics": {
+        "PR_AUC": 0.2869,
+        "Recall_Late": 0.8602,
+        "Max_Min_Recall_Gap": 0.4208,
+        "Latency_P95": 0.089,
+        "Memory_MB": 0.001
+      }
+    },
+    "RandomForest": {
+      "accuracy_score": 0.846995473778605,
+      "edge_score": 0.8455721077435484,
+      "validation_metrics": {
+        "PR_AUC": 0.3584,
+        "Recall_Late": 0.911,
+        "Max_Min_Recall_Gap": 0.4505,
+        "Latency_P95": 2.926,
+        "Memory_MB": 0.076
+      }
+    },
+    "XGBoost": {
+      "accuracy_score": 0.7359001658682305,
+      "edge_score": 0.8265877486936336,
+      "validation_metrics": {
+        "PR_AUC": 0.3452,
+        "Recall_Late": 0.8983,
+        "Max_Min_Recall_Gap": 0.4208,
+        "Latency_P95": 0.379,
+        "Memory_MB": 0.05
+      }
+    },
+    "HybridLSTMTransformer": {
+      "accuracy_score": 0.663246133040438,
+      "edge_score": 0.7529807562560418,
+      "validation_metrics": {
+        "PR_AUC": 0.3531,
+        "Recall_Late": 0.9068,
+        "Max_Min_Recall_Gap": 0.9604,
+        "Latency_P95": 1.323,
+        "Memory_MB": 0.333
+      }
+    },
+    "Tabular1DCNN": {
+      "accuracy_score": 0.8629004407775995,
+      "edge_score": 0.892310934708088,
+      "validation_metrics": {
+        "PR_AUC": 0.3641,
+        "Recall_Late": 0.9068,
+        "Max_Min_Recall_Gap": 0.4604,
+        "Latency_P95": 0.489,
+        "Memory_MB": 0.283
+      }
+    },
+    "BiLSTM": {
+      "accuracy_score": 0.891627888284777,
+      "edge_score": 0.9054050023323615,
+      "validation_metrics": {
+        "PR_AUC": 0.3562,
+        "Recall_Late": 0.9237,
+        "Max_Min_Recall_Gap": 0.4901,
+        "Latency_P95": 1.125,
+        "Memory_MB": 0.753
+      }
+    },
+    "DeepTabularMLP": {
+      "accuracy_score": 0.8463434342076457,
+      "edge_score": 0.5208783516479296,
+      "validation_metrics": {
+        "PR_AUC": 0.3564,
+        "Recall_Late": 0.9322,
+        "Max_Min_Recall_Gap": 0.4703,
+        "Latency_P95": 12.0,
+        "Memory_MB": 15.0
+      }
+    }
+  }
+}

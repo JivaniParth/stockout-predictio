@@ -1,6 +1,6 @@
 # Empirical Research Benchmark & Verification Report
 
-**Audit Timestamp:** 2026-11-19T11:24:15Z | **Platform:** Windows 11 (10.0.26300)
+**Audit Timestamp:** 2026-11-19T11:38:06Z | **Platform:** Windows 11 (10.0.26300)
 **Python Runtime:** 3.12.10 | **PyTorch:** 2.6.0+cu124
 
 ---
@@ -37,8 +37,8 @@
 
 ## 3. Prospective Test Model Comparison with Multi-Seed Std & 95% Bootstrap CIs
 
-| Model | Tau_Star | Recall_Mean | Recall_Std | Recall_CI | Precision_Mean | Precision_Std | F1_Mean | F1_Std | F1_CI | PR_AUC_Mean | PR_AUC_Std | PR_AUC_CI | ROC_AUC_Mean | ROC_AUC_Std | ROC_AUC_CI | Accuracy_Mean | Brier_Score | ECE_15Bin | DeLong_p_adj | McNemar_p_adj |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Index | Tau_Star | Recall_Mean | Recall_Std | Recall_CI | Precision_Mean | Precision_Std | F1_Mean | F1_Std | F1_CI | PR_AUC_Mean | PR_AUC_Std | PR_AUC_CI | ROC_AUC_Mean | ROC_AUC_Std | ROC_AUC_CI | Accuracy_Mean | Brier_Score | ECE_15Bin | DeLong_p_adj | McNemar_p_adj |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | LogisticRegression | 0.45999999999999996 | 0.7420919975110578 | 0.039177118356686136 | [0.667, 0.817] | 0.2032429590918523 | 0.018854667645396533 | 0.31872272086037867 | 0.02510411176369524 | [0.270, 0.368] | 0.26719500902736365 | 0.03649514139653916 | [0.199, 0.342] | 0.7237724792245089 | 0.023904498792841268 | [0.677, 0.773] | 0.6260304818092429 | 0.20785796069644447 | 0.270724480253129 | 5.049288789682471e-05 | 0.0 |
 | RandomForest | 0.45000000000000007 | 0.8005548245203125 | 0.03480122619756109 | [0.727, 0.865] | 0.28162767192415383 | 0.0236742927749956 | 0.4161837522937667 | 0.0280849068590406 | [0.359, 0.470] | 0.3361160959476511 | 0.04025432445811144 | [0.258, 0.420] | 0.7876989115279573 | 0.023304268513582062 | [0.741, 0.833] | 0.7353352999016716 | 0.128492196629088 | 0.17048500097811922 | 1.0 | 0.0945845669726666 |
 | XGBoost | 0.41000000000000003 | 0.6522693868969012 | 0.04243919956733011 | [0.568, 0.733] | 0.2772640868796765 | 0.02599684328673978 | 0.38857845945129177 | 0.030233708306098554 | [0.326, 0.443] | 0.368836273189408 | 0.04402520014040561 | [0.283, 0.455] | 0.786970950171277 | 0.022717741772741957 | [0.739, 0.830] | 0.7581819075712881 | 0.12204897403717041 | 0.13421692922638112 | 1.0 | 1.0 |
@@ -53,6 +53,13 @@
 
 | Model Architecture | Raw ECE (15-Bin) | Raw Brier | Platt ECE | Platt Brier | Isotonic ECE | Isotonic Brier | Raw tau* | Calibrated tau* |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **LogisticRegression** | 0.2707 | 0.2079 | 0.0485 | 0.0993 | 0.0672 | 0.1018 | 0.46 | 0.21 |
+| **RandomForest** | 0.1705 | 0.1285 | 0.0248 | 0.0894 | 0.0389 | 0.0912 | 0.45 | 0.24 |
+| **XGBoost** | 0.1342 | 0.1220 | 0.0269 | 0.0898 | 0.0545 | 0.0949 | 0.41 | 0.36 |
+| **HybridLSTMTransformer** | 0.1366 | 0.1439 | 0.0216 | 0.0950 | 0.0500 | 0.0998 | 0.19 | 0.18 |
+| **Tabular1DCNN** | 0.2270 | 0.1501 | 0.0290 | 0.0942 | 0.0363 | 0.0937 | 0.43 | 0.20 |
+| **BiLSTM** | 0.1114 | 0.1174 | 0.0364 | 0.0944 | 0.0422 | 0.0948 | 0.35 | 0.20 |
+| **DeepTabularMLP** | 0.1145 | 0.1293 | 0.0458 | 0.0994 | 0.0483 | 0.0994 | 0.49 | 0.16 |
 
 ---
 
@@ -61,13 +68,13 @@
 ### 5.1 Validation-Only Champion Selection Scoring
 > **Methodological Rule:** Champions are selected and scored **strictly on 2014 validation metrics** (Val PR-AUC, Val Recall at calibrated tau*, Val Max-Min Recall Gap) combined with measured QoS (Latency, Memory). Prospective 2015+ test metrics are attached post-selection strictly for reporting.
 
-- **Accuracy Champion:** `BiLSTM` (Validation Score: `0.8916`)
-- **Edge Champion:** `BiLSTM` (Validation Score: `0.9054`)
+- **Accuracy Champion:** `BiLSTM` (Validation Score: `0.8862`)
+- **Edge Champion:** `Tabular1DCNN` (Validation Score: `0.8892`)
 
 ### 5.2 MAUT Weight Sensitivity Grid Sweep
 - **Total Grid Evaluations:** 60 Accuracy configurations, 150 Edge configurations.
-- **Most Stable Accuracy Champion:** `DeepTabularMLP` (41.67% of grid evaluations).
-- **Most Stable Edge Champion:** `BiLSTM` (63.33% of grid evaluations).
+- **Most Stable Accuracy Champion:** `DeepTabularMLP` (43.33% of grid evaluations).
+- **Most Stable Edge Champion:** `BiLSTM` (46.67% of grid evaluations).
 
 ---
 
@@ -85,19 +92,19 @@
 ### 6.2 Cache Hit vs. Cache Miss Latency Breakdown
 | Evaluation Mode | Payloads Tested | Latency P50 (ms) | Latency P90 (ms) | Latency P95 (ms) | Latency P99 (ms) | Cache Hit Rate |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Cache Miss (Unique Payloads)** | 100 | 0.022 ms | 0.026 ms | 0.033 ms | 0.647 ms | 0.0% |
-| **Cache Hit (Warm Repeated)** | 100 | 0.019 ms | 0.021 ms | 0.022 ms | 0.028 ms | 100.0% |
+| **Cache Miss (Unique Payloads)** | 100 | 11.926 ms | 13.386 ms | 13.869 ms | 14.993 ms | 0.0% |
+| **Cache Hit (Warm Repeated)** | 100 | 0.012 ms | 0.014 ms | 0.017 ms | 0.072 ms | 100.0% |
 
 ### 6.3 Isolated Model In-Process Micro-Benchmarks (500 iterations, excluding HTTP framework)
 | Model Architecture | Parameter Count | Serialized Size (KB) | Latency P50 (ms) | Latency P95 (ms) | RSS Delta (MB) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Tabular1DCNN** | 72,321 | 289.34 KB | 0.508 ms | 0.632 ms | 0.0 MB |
-| **HybridLSTMTransformer** | 84,290 | 341.04 KB | 2.096 ms | 2.283 ms | 0.0 MB |
-| **BiLSTM** | 195,138 | 771.12 KB | 2.145 ms | 2.42 ms | 0.0 MB |
-| **ResMLP** | 213,441 | 842.63 KB | 0.965 ms | 1.128 ms | 0.0 MB |
-| **XGBoost** | 1,800 | 50.96 KB | 0.217 ms | 0.312 ms | 0.016 MB |
-| **RandomForest** | 808 | 79.29 KB | 1.681 ms | 2.359 ms | 0.004 MB |
-| **LogisticRegression** | 37 | 0.93 KB | 0.058 ms | 0.086 ms | 0.0 MB |
+| **Tabular1DCNN** | 72,321 | 289.34 KB | 0.362 ms | 0.462 ms | 0.0 MB |
+| **HybridLSTMTransformer** | 84,290 | 341.04 KB | 1.49 ms | 1.848 ms | 0.0 MB |
+| **BiLSTM** | 195,138 | 771.12 KB | 1.633 ms | 1.938 ms | 0.0 MB |
+| **ResMLP** | 213,441 | 842.63 KB | 0.639 ms | 0.75 ms | 0.0 MB |
+| **XGBoost** | 1,800 | 50.96 KB | 0.355 ms | 0.449 ms | 0.043 MB |
+| **RandomForest** | 808 | 79.29 KB | 1.635 ms | 1.888 ms | 0.004 MB |
+| **LogisticRegression** | 37 | 0.93 KB | 0.057 ms | 0.071 ms | 0.0 MB |
 
 ### 6.4 Multi-Worker Uvicorn Scaling Analysis
 | Worker Count | Target Concurrency | Throughput (req/s) | Latency P95 (ms) | Scaling Efficiency | Architectural Status |
@@ -134,6 +141,13 @@
 ### 8.2 Per-Tier Performance & Mitigation Impact
 | Model Architecture | Baseline Recall Gap | Mitigated Recall Gap | Baseline Tier 3 Recall | Mitigated Tier 3 Recall | Baseline Overall F1 | Mitigated Overall F1 | F1 Cost |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **LogisticRegression** | 0.8913 | 0.9348 | 67.61% | 81.69% | 0.3190 | 0.3301 | -0.0111 |
+| **RandomForest** | 0.8913 | 0.9348 | 77.46% | 83.10% | 0.4165 | 0.4189 | -0.0024 |
+| **XGBoost** | 0.7174 | 0.7887 | 63.38% | 78.87% | 0.3881 | 0.4228 | -0.0347 |
+| **HybridLSTMTransformer** | 0.8913 | 0.8913 | 77.46% | 77.46% | 0.3934 | 0.3926 | 0.0008 |
+| **Tabular1DCNN** | 0.5145 | 0.8478 | 77.46% | 83.10% | 0.3823 | 0.3806 | 0.0017 |
+| **BiLSTM** | 0.8478 | 0.8478 | 71.83% | 74.65% | 0.3888 | 0.3940 | -0.0052 |
+| **DeepTabularMLP** | 0.9130 | 0.9130 | 67.61% | 71.83% | 0.3922 | 0.3949 | -0.0027 |
 
 ---
 
@@ -171,10 +185,12 @@
 5. **Exhaustive Fairness & Provenance Audit:** Full per-tier metrics reported with bootstrap CIs; certified zero data leakage in tier definitions from post-2013 data.
 6. **Dual ONNX Serving:** Added XGBoost ONNX export with parity check (< 1e-4) so both Accuracy and Edge champions can be served from the manifest.
 7. **Kubernetes Autoscaling Manifests:** Provided both Prometheus-Adapter (`k8s/prometheus-adapter-config.yaml`) and KEDA (`k8s/keda-scaledobject.yaml`) manifests.
+8. **Audited Path 1 + Path 2 Unified Engine:** Full Three-Way Decision (3WD) dual-threshold policy, fixed alert budget benchmarks (top 10%, 20%, 30%), un-leaked Ghazvinian multi-objective regression audit, and literature benchmark relabeling documented in [reports/COMBINED_DUAL_OBJECTIVE_REPORT.md](file:///D:/MTech%20CSE/Sem%203/CC%20+%20DL%20Research%20Project/Implementation/reports/COMBINED_DUAL_OBJECTIVE_REPORT.md) and [reports/combined_path1_path2_results.json](file:///D:/MTech%20CSE/Sem%203/CC%20+%20DL%20Research%20Project/Implementation/reports/combined_path1_path2_results.json).
 
 ### 11.2 Remaining Empirical Limitations
 1. **Limited Prospective Positive Events:** The 2015+ prospective test split contains exactly 120 positive delay events across 1,017 shipments. While sufficient for asymptotic confidence intervals, subtle feature ablation effects (e.g., harmonic date encodings) fall within bootstrap noise bounds.
 2. **Windows Single-Process Threading Constraints:** On Windows platforms without POSIX fork, multi-worker Uvicorn processes must spawn independent memory spaces; singleflight caching is process-isolated rather than cluster-shared (Redis L2 cache resolves this in distributed deployments).
 3. **Static Literature-Derived Tiers:** Health equity tiers are derived from historical pre-2014 corridors and PEPFAR/WHO publications; dynamic corridor degradation in post-conflict zones requires continuous monitoring.
+4. **Holdout Integrity Notice:** The 2015+ prospective test set was examined during earlier exploratory iterations; decision thresholds are frozen exclusively on 2014 validation data.
 
 All empirical figures, models, and tables trace directly to executable pipeline stages.
