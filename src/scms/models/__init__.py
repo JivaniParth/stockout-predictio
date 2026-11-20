@@ -1,0 +1,1 @@
+"""SCMS models module."""
