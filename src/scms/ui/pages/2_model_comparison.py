@@ -6,8 +6,12 @@ Reads dynamically from reports/combined_path1_path2_results.json and reports/mod
 import json
 from pathlib import Path
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+except ImportError:
+    px = None
+    go = None
 import streamlit as st
 
 st.header("📊 Multi-Model Performance & Alert Budget Comparison")
@@ -63,31 +67,37 @@ st.info(
 
 col1, col2 = st.columns(2)
 
-with col1:
-    fig_pr = px.bar(
-        df_budget,
-        x="Model Architecture",
-        y="PR-AUC (Prospective)",
-        color="Family",
-        title="PR-AUC Comparison across Architectures",
-        text_auto=".3f",
-        color_discrete_map={"Classical / GBDT": "#3b82f6", "Deep Neural Architecture": "#8b5cf6"},
-    )
-    fig_pr.update_layout(xaxis_tickangle=-45, height=400)
-    st.plotly_chart(fig_pr, use_container_width=True)
+if px is not None:
+    with col1:
+        fig_pr = px.bar(
+            df_budget,
+            x="Model Architecture",
+            y="PR-AUC (Prospective)",
+            color="Family",
+            title="PR-AUC Comparison across Architectures",
+            text_auto=".3f",
+            color_discrete_map={"Classical / GBDT": "#3b82f6", "Deep Neural Architecture": "#8b5cf6"},
+        )
+        fig_pr.update_layout(xaxis_tickangle=-45, height=400)
+        st.plotly_chart(fig_pr, use_container_width=True)
 
-with col2:
-    fig_roc = px.bar(
-        df_budget,
-        x="Model Architecture",
-        y="ROC-AUC (Prospective)",
-        color="Family",
-        title="ROC-AUC Comparison across Architectures",
-        text_auto=".3f",
-        color_discrete_map={"Classical / GBDT": "#3b82f6", "Deep Neural Architecture": "#8b5cf6"},
-    )
-    fig_roc.update_layout(xaxis_tickangle=-45, height=400)
-    st.plotly_chart(fig_roc, use_container_width=True)
+    with col2:
+        fig_roc = px.bar(
+            df_budget,
+            x="Model Architecture",
+            y="ROC-AUC (Prospective)",
+            color="Family",
+            title="ROC-AUC Comparison across Architectures",
+            text_auto=".3f",
+            color_discrete_map={"Classical / GBDT": "#3b82f6", "Deep Neural Architecture": "#8b5cf6"},
+        )
+        fig_roc.update_layout(xaxis_tickangle=-45, height=400)
+        st.plotly_chart(fig_roc, use_container_width=True)
+else:
+    with col1:
+        st.dataframe(df_budget[["Model Architecture", "PR-AUC (Prospective)", "Family"]], use_container_width=True)
+    with col2:
+        st.dataframe(df_budget[["Model Architecture", "ROC-AUC (Prospective)", "Family"]], use_container_width=True)
 
 # Recall at Alert Budget Curve
 st.subheader("Recall Captured at Constrained Logistics Alert Budgets")
@@ -103,16 +113,19 @@ for model_name, metrics in budget_data.items():
         )
 
 df_curve = pd.DataFrame(budget_curve_rows)
-fig_curve = px.line(
-    df_curve,
-    x="Alert Budget (%)",
-    y="Recall (%)",
-    color="Model",
-    markers=True,
-    title="Clinical Alert Budget Efficiency (Recall Captured)",
-)
-fig_curve.update_layout(height=420)
-st.plotly_chart(fig_curve, use_container_width=True)
+if px is not None:
+    fig_curve = px.line(
+        df_curve,
+        x="Alert Budget (%)",
+        y="Recall (%)",
+        color="Model",
+        markers=True,
+        title="Clinical Alert Budget Efficiency (Recall Captured)",
+    )
+    fig_curve.update_layout(height=420)
+    st.plotly_chart(fig_curve, use_container_width=True)
+else:
+    st.dataframe(df_curve, use_container_width=True)
 
 # Multi-seed validation metrics from CSV
 if COMPARISON_CSV.exists():

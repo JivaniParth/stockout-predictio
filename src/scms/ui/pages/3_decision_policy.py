@@ -8,8 +8,12 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+except ImportError:
+    px = None
+    go = None
 import streamlit as st
 
 st.header("⚖️ Three-Way Decision (3WD) Policy & Operational Thresholds")
@@ -140,15 +144,18 @@ m3.metric("Safe Region NPV", f"{npv * 100:.1f}%", help="Negative Predictive Valu
 m4.metric("Boundary Region Size", f"{n_boundary} ({n_boundary / n_total * 100:.1f}%)", help="Consignments under active telemetry tracking.")
 
 # Region Distribution Donut Chart
-fig_donut = go.Figure(
-    data=[
-        go.Pie(
-            labels=["Alert (Intervene)", "Boundary (Track)", "Safe (Surface)"],
-            values=[n_alert, n_boundary, n_safe],
-            hole=0.45,
-            marker_colors=["#ef4444", "#f59e0b", "#22c55e"],
-        )
-    ]
-)
-fig_donut.update_layout(title="Prospective Consignment Partition Distribution", height=320, margin=dict(l=10, r=10, t=30, b=10))
-st.plotly_chart(fig_donut, use_container_width=True)
+if go is not None:
+    fig_donut = go.Figure(
+        data=[
+            go.Pie(
+                labels=["Alert (Intervene)", "Boundary (Track)", "Safe (Surface)"],
+                values=[n_alert, n_boundary, n_safe],
+                hole=0.45,
+                marker_colors=["#ef4444", "#f59e0b", "#22c55e"],
+            )
+        ]
+    )
+    fig_donut.update_layout(title="Prospective Consignment Partition Distribution", height=320, margin=dict(l=10, r=10, t=30, b=10))
+    st.plotly_chart(fig_donut, use_container_width=True)
+else:
+    st.write(f"**Region Split:** Alert: {n_alert} ({n_alert / n_total * 100:.1f}%), Boundary: {n_boundary} ({n_boundary / n_total * 100:.1f}%), Safe: {n_safe} ({n_safe / n_total * 100:.1f}%)")

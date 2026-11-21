@@ -7,7 +7,10 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
+try:
+    import plotly.graph_objects as go
+except ImportError:
+    go = None
 import streamlit as st
 
 st.header("🎯 Consignment Stockout Triage & Risk Decisioning")
@@ -112,13 +115,43 @@ with tab_single:
             }
 
             try:
-                from src.scms.serving.schemas import ShipmentInput
-                from src.scms.serving.app import shipment_input_to_entity, container
+                api_url = os.getenv("API_BASE_URL") or os.getenv("API_URL")
+                latency_ms = None
+                prob = None
 
-                entity = shipment_input_to_entity(ShipmentInput(**shipment_dict))
-                use_case = container.get_predict_shipment_use_case("HybridLSTMTransformer")
-                prognosis = use_case.execute(entity)
-                prob = float(prognosis.risk_probability)
+                if api_url:
+                    import urllib.request
+                    import json
+                    import time
+
+                    api_url = api_url.rstrip("/")
+                    predict_endpoint = f"{api_url}/predict"
+                    t0 = time.perf_counter()
+                    req_data = json.dumps(shipment_dict).encode("utf-8")
+                    req = urllib.request.Request(
+                        predict_endpoint,
+                        data=req_data,
+                        headers={"Content-Type": "application/json"},
+                    )
+                    try:
+                        with urllib.request.urlopen(req, timeout=15) as resp:
+                            res_json = json.loads(resp.read().decode("utf-8"))
+                            prob = float(res_json.get("risk_probability", res_json.get("calibrated_probability", 0.0)))
+                            latency_ms = float(res_json.get("qos_latency_ms", (time.perf_counter() - t0) * 1000.0))
+                            st.success(f"Live inference received from API service: `{api_url}`")
+                    except Exception as e:
+                        st.warning(f"Remote API call to `{predict_endpoint}` failed: {e}. Falling back to in-process model execution.")
+                        prob = None
+
+                if prob is None:
+                    from src.scms.serving.schemas import ShipmentInput
+                    from src.scms.serving.app import shipment_input_to_entity, container
+
+                    entity = shipment_input_to_entity(ShipmentInput(**shipment_dict))
+                    use_case = container.get_predict_shipment_use_case("HybridLSTMTransformer")
+                    prognosis = use_case.execute(entity)
+                    prob = float(prognosis.risk_probability)
+                    latency_ms = float(prognosis.qos_latency_ms)
 
                 # Determine 3WD Region
                 if prob >= tau_alert:
@@ -144,35 +177,38 @@ with tab_single:
                     f"**Three-Way Decision Region**<br><span class='{badge_cls}'>{region}</span>",
                     unsafe_allow_html=True,
                 )
-                c3.metric("Inference Latency", f"{prognosis.qos_latency_ms:.2f} ms")
+                c3.metric("Inference Latency", f"{latency_ms:.2f} ms")
 
                 st.info(f"**Recommended Action:** {action}")
 
                 # Gauge Chart
-                fig = go.Figure(
-                    go.Indicator(
-                        mode="gauge+number",
-                        value=prob * 100,
-                        domain={"x": [0, 1], "y": [0, 1]},
-                        title={"text": "Stockout Risk Index (%)"},
-                        gauge={
-                            "axis": {"range": [0, 100]},
-                            "bar": {"color": color},
-                            "steps": [
-                                {"range": [0, tau_safe * 100], "color": "rgba(34, 197, 94, 0.2)"},
-                                {"range": [tau_safe * 100, tau_alert * 100], "color": "rgba(245, 158, 11, 0.2)"},
-                                {"range": [tau_alert * 100, 100], "color": "rgba(239, 68, 68, 0.2)"},
-                            ],
-                            "threshold": {
-                                "line": {"color": "red", "width": 3},
-                                "thickness": 0.75,
-                                "value": tau_alert * 100,
+                if go is not None:
+                    fig = go.Figure(
+                        go.Indicator(
+                            mode="gauge+number",
+                            value=prob * 100,
+                            domain={"x": [0, 1], "y": [0, 1]},
+                            title={"text": "Stockout Risk Index (%)"},
+                            gauge={
+                                "axis": {"range": [0, 100]},
+                                "bar": {"color": color},
+                                "steps": [
+                                    {"range": [0, tau_safe * 100], "color": "rgba(34, 197, 94, 0.2)"},
+                                    {"range": [tau_safe * 100, tau_alert * 100], "color": "rgba(245, 158, 11, 0.2)"},
+                                    {"range": [tau_alert * 100, 100], "color": "rgba(239, 68, 68, 0.2)"},
+                                ],
+                                "threshold": {
+                                    "line": {"color": "red", "width": 3},
+                                    "thickness": 0.75,
+                                    "value": tau_alert * 100,
+                                },
                             },
-                        },
+                        )
                     )
-                )
-                fig.update_layout(height=260, margin=dict(l=20, r=20, t=30, b=20))
-                st.plotly_chart(fig, use_container_width=True)
+                    fig.update_layout(height=260, margin=dict(l=20, r=20, t=30, b=20))
+                    st.plotly_chart(fig, use_container_width=True)
+                else:
+                    st.progress(min(max(prob, 0.0), 1.0), text=f"Stockout Risk Score: {prob * 100:.2f}%")
 
                 # Local Attributions
                 st.subheader("Top Predictive Feature Drivers (Local SHAP Attributions)")

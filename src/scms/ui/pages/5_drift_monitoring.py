@@ -6,8 +6,12 @@ Reads drift metrics from reports/drift/ and queries live relational audit record
 from pathlib import Path
 import sqlite3
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+except ImportError:
+    px = None
+    go = None
 import streamlit as st
 
 st.header("📡 Distributional Drift Monitoring & Operational Telemetry")
@@ -26,27 +30,28 @@ if DRIFT_CSV.exists():
     st.dataframe(df_drift, use_container_width=True)
 
     c1, c2 = st.columns(2)
-    with c1:
-        fig_psi = px.bar(
-            df_drift,
-            x="Quarter",
-            y="Score_PSI",
-            color="Drift_Detected",
-            title="Population Stability Index (PSI) per Quarter",
-            color_discrete_map={True: "#ef4444", False: "#22c55e"},
-        )
-        fig_psi.add_hline(y=0.25, line_dash="dash", line_color="orange", annotation_text="Significant Shift Threshold (0.25)")
-        st.plotly_chart(fig_psi, use_container_width=True)
+    if px is not None:
+        with c1:
+            fig_psi = px.bar(
+                df_drift,
+                x="Quarter",
+                y="Score_PSI",
+                color="Drift_Detected",
+                title="Population Stability Index (PSI) per Quarter",
+                color_discrete_map={True: "#ef4444", False: "#22c55e"},
+            )
+            fig_psi.add_hline(y=0.25, line_dash="dash", line_color="orange", annotation_text="Significant Shift Threshold (0.25)")
+            st.plotly_chart(fig_psi, use_container_width=True)
 
-    with c2:
-        fig_ks = px.line(
-            df_drift,
-            x="Quarter",
-            y="KS_Statistic",
-            markers=True,
-            title="Kolmogorov-Smirnov (KS) Statistic over Time",
-        )
-        st.plotly_chart(fig_ks, use_container_width=True)
+        with c2:
+            fig_ks = px.line(
+                df_drift,
+                x="Quarter",
+                y="KS_Statistic",
+                markers=True,
+                title="Kolmogorov-Smirnov (KS) Statistic over Time",
+            )
+            st.plotly_chart(fig_ks, use_container_width=True)
 
 st.markdown("---")
 # 2. Live Relational Audit Trail

@@ -254,6 +254,7 @@ def cmd_ui(args):
         ui_script,
         f"--server.port={port}",
         "--server.address=0.0.0.0",
+        "--server.headless=true",
     ]
     subprocess.run(cmd)
 

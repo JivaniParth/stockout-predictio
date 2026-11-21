@@ -6,8 +6,12 @@ Visualizes per-tier recall parity, mitigated equity gap, and F1 cost trade-offs.
 import yaml
 from pathlib import Path
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+except ImportError:
+    px = None
+    go = None
 import streamlit as st
 
 st.header("🌐 Algorithmic Health Equity Governance & Fairness Auditing")
@@ -58,30 +62,33 @@ df_fairness = pd.DataFrame(fairness_records)
 st.dataframe(df_fairness, use_container_width=True)
 
 # Visualizing Tier 3 Recall Improvement
-fig_tier3 = go.Figure()
-fig_tier3.add_trace(
-    go.Bar(
-        name="Baseline Tier 3 Recall (%)",
-        x=df_fairness["Model Architecture"],
-        y=df_fairness["Baseline Tier 3 Recall"],
-        marker_color="#94a3b8",
+if go is not None:
+    fig_tier3 = go.Figure()
+    fig_tier3.add_trace(
+        go.Bar(
+            name="Baseline Tier 3 Recall (%)",
+            x=df_fairness["Model Architecture"],
+            y=df_fairness["Baseline Tier 3 Recall"],
+            marker_color="#94a3b8",
+        )
     )
-)
-fig_tier3.add_trace(
-    go.Bar(
-        name="Mitigated Tier 3 Recall (%)",
-        x=df_fairness["Model Architecture"],
-        y=df_fairness["Mitigated Tier 3 Recall"],
-        marker_color="#22c55e",
+    fig_tier3.add_trace(
+        go.Bar(
+            name="Mitigated Tier 3 Recall (%)",
+            x=df_fairness["Model Architecture"],
+            y=df_fairness["Mitigated Tier 3 Recall"],
+            marker_color="#22c55e",
+        )
     )
-)
-fig_tier3.update_layout(
-    barmode="group",
-    title="Tier 3 (Fragile / Underserved Corridors) Recall Uplift after Mitigation",
-    height=420,
-    yaxis_title="Stockout Recall (%)",
-)
-st.plotly_chart(fig_tier3, use_container_width=True)
+    fig_tier3.update_layout(
+        barmode="group",
+        title="Tier 3 (Fragile / Underserved Corridors) Recall Uplift after Mitigation",
+        height=420,
+        yaxis_title="Stockout Recall (%)",
+    )
+    st.plotly_chart(fig_tier3, use_container_width=True)
+else:
+    st.dataframe(df_fairness[["Model Architecture", "Baseline Tier 3 Recall", "Mitigated Tier 3 Recall", "Equity Disparity Gap (%)"]], use_container_width=True)
 
 # Data Provenance Disclosure
 st.markdown(

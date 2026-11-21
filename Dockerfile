@@ -48,7 +48,7 @@ USER appuser
 EXPOSE 8000 8501
 
 HEALTHCHECK --interval=20s --timeout=5s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:8000/health || exit 1
+  CMD curl -f http://localhost:8000/health || curl -f http://localhost:8501/_stcore/health || curl -f http://localhost:8501/ || exit 1
 
 WORKDIR /app
 CMD ["python", "main.py", "serve", "--host", "0.0.0.0", "--port", "8000"]
