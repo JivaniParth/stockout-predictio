@@ -26,9 +26,15 @@ Thumbs.db
 
 # Secrets & Local Configurations
 .env
+.env.*
+!.env.example
 *.env
 *.pem
 *.key
+*.crt
+*.cert
+*.tfvars
+*.tfvars.json
 secrets/
 *credentials*
 

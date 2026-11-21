@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_DB: hscm_db
       POSTGRES_USER: hscm_admin
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-hscm_secure_cloud_pass_2026}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -34,13 +34,13 @@ services:
     image: redis:7-alpine
     container_name: hscm_redis_prod
     restart: always
-    command: redis-server --appendonly yes --maxmemory 1024mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD:-hscm_redis_secret_2026}
+    command: redis-server --appendonly yes --maxmemory 1024mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD:-redis_pass}
     volumes:
       - redis_data:/data
     ports:
       - "6379:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-hscm_redis_secret_2026}", "ping"]
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redis_pass}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -68,8 +68,8 @@ services:
     environment:
       - PORT=8000
       - WORKERS=4
-      - DATABASE_URL=postgresql://hscm_admin:${DB_PASSWORD:-hscm_secure_cloud_pass_2026}@postgres:5432/hscm_db
-      - REDIS_URL=redis://:${REDIS_PASSWORD:-hscm_redis_secret_2026}@redis:6379/0
+      - DATABASE_URL=postgresql://hscm_admin:${DB_PASSWORD:-postgres}@postgres:5432/hscm_db
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-redis_pass}@redis:6379/0
       - DEVICE=cpu
       - RATE_LIMIT_PER_MIN=600
     ports:
@@ -102,8 +102,8 @@ services:
       redis:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://hscm_admin:${DB_PASSWORD:-hscm_secure_cloud_pass_2026}@postgres:5432/hscm_db
-      - REDIS_URL=redis://:${REDIS_PASSWORD:-hscm_redis_secret_2026}@redis:6379/0
+      - DATABASE_URL=postgresql://hscm_admin:${DB_PASSWORD:-postgres}@postgres:5432/hscm_db
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-redis_pass}@redis:6379/0
       - CONCURRENCY=8
     deploy:
       resources:

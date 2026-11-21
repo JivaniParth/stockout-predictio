@@ -1,6 +1,6 @@
 # Multi-Stage Hardened & Non-Root Dockerfile for HSCM Prediction Platform
-# Stage 1: Build & Dependencies
-FROM python:3.11.9-slim-bookworm AS builder
+# Stage 1: Build & Dependencies (Python 3.12 required for numpy>=2.5, scipy>=1.18, xgboost>=3.4)
+FROM python:3.12-slim-bookworm AS builder
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -17,13 +17,13 @@ COPY requirements.txt /install/requirements.txt
 RUN pip install --prefix=/install/deps -r requirements.txt
 
 # Stage 2: Final Minimal Runtime Environment
-FROM python:3.11.9-slim-bookworm AS runner
+FROM python:3.12-slim-bookworm AS runner
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PORT=8000 \
     PATH="/install/deps/bin:$PATH" \
-    PYTHONPATH="/install/deps/lib/python3.11/site-packages:/app:$PYTHONPATH"
+    PYTHONPATH="/install/deps/lib/python3.12/site-packages:/app"
 
 WORKDIR /app
 

@@ -177,8 +177,8 @@ GCP_SA_KEY              = <Base64-encoded Service Account JSON>
 R2_ACCESS_KEY_ID        = <Cloudflare R2 Access Key>
 R2_SECRET_ACCESS_KEY    = <Cloudflare R2 Secret Access Key>
 R2_BUCKET_NAME          = hscm-model-artifacts
-NEON_DATABASE_URL       = postgresql://user:pass@ep-cool-db.us-east-2.aws.neon.tech/hscm_audit?sslmode=require
-UPSTASH_REDIS_URL       = rediss://default:token@us1-quick-token.upstash.io:6379
+NEON_DATABASE_URL       = postgresql://<db_user>:<db_password>@<db_host>:<db_port>/<db_name>?sslmode=require
+UPSTASH_REDIS_URL       = rediss://default:<redis_token>@<redis_host>:6379
 DAGSHUB_MLFLOW_URI      = https://dagshub.com/<user>/<repo>.mlflow
 DAGSHUB_USER            = <username>
 DAGSHUB_TOKEN           = <user_token>

@@ -12,8 +12,8 @@ services:
     environment:
       - PORT=8000
       - DEVICE=cpu
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql://hscm_admin:hscm_secure_pass@postgres:5432/hscm_db
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://hscm_admin:postgres@postgres:5432/hscm_db}
     ports:
       - "8000:8000"
     healthcheck:
@@ -64,8 +64,8 @@ services:
     container_name: hscm_grafana
     restart: unless-stopped
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD:-admin_secure_change_me}
       - GF_USERS_ALLOW_SIGN_UP=false
     ports:
       - "3000:3000"
@@ -89,9 +89,9 @@ services:
     container_name: hscm_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: hscm_db
-      POSTGRES_USER: hscm_admin
-      POSTGRES_PASSWORD: hscm_secure_pass
+      POSTGRES_DB: ${POSTGRES_DB:-hscm_db}
+      POSTGRES_USER: ${POSTGRES_USER:-hscm_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

@@ -35,28 +35,28 @@ variable "r2_access_key_id" {
   description = "Cloudflare R2 S3-compatible API token Access Key ID."
   type        = string
   sensitive   = true
-  default     = "mock-r2-key"
+  default     = ""
 }
 
 variable "r2_secret_access_key" {
   description = "Cloudflare R2 S3-compatible API token Secret Access Key."
   type        = string
   sensitive   = true
-  default     = "mock-r2-secret"
+  default     = ""
 }
 
 variable "upstash_redis_url" {
   description = "Upstash Serverless Redis connection URL for L2 caching (rediss://...)."
   type        = string
   sensitive   = true
-  default     = "rediss://default:dummy@us1-quick-example.upstash.io:6379"
+  default     = ""
 }
 
 variable "neon_database_url" {
   description = "Neon Serverless Postgres connection string for audit log storage."
   type        = string
   sensitive   = true
-  default     = "postgresql://user:password@ep-example.us-east-2.aws.neon.tech/neondb?sslmode=require"
+  default     = ""
 }
 
 variable "dagshub_mlflow_uri" {
