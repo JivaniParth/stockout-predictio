@@ -136,11 +136,12 @@ with tab_single:
                         headers={"Content-Type": "application/json"},
                     )
                     try:
-                        with urllib.request.urlopen(req, timeout=15) as resp:
-                            res_json = json.loads(resp.read().decode("utf-8"))
-                            prob = float(res_json.get("risk_probability", res_json.get("calibrated_probability", 0.0)))
-                            latency_ms = float(res_json.get("qos_latency_ms", (time.perf_counter() - t0) * 1000.0))
-                            st.success(f"Live inference received from API service: `{api_url}`")
+                        with st.spinner("Querying live cloud inference API (waking container if scaled to 0)..."):
+                            with urllib.request.urlopen(req, timeout=60) as resp:
+                                res_json = json.loads(resp.read().decode("utf-8"))
+                                prob = float(res_json.get("risk_probability", res_json.get("calibrated_probability", 0.0)))
+                                latency_ms = float(res_json.get("qos_latency_ms", (time.perf_counter() - t0) * 1000.0))
+                                st.success(f"Live inference received from API service: `{api_url}`")
                     except Exception as e:
                         st.warning(f"Remote API call to `{predict_endpoint}` failed: {e}. Falling back to in-process model execution.")
                         prob = None
