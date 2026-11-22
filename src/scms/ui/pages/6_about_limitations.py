@@ -17,9 +17,8 @@ st.markdown(
     ### 🔬 Research Project Context
     - **Academic Scope:** Master of Technology (M.Tech) in Computer Science & Engineering (Semester 3).
     - **Specialization Integration:** Cloud Computing (CC) & Deep Learning (DL) Applied Research.
-    - **Student Investigator:** Parth Jivani (Enrolment No: 230303107002), Navrachana University.
-    - **Faculty Supervisor:** Dr. Yogesh Chaudhari, School of Engineering and Technology.
-    - **Repository Core:** `Implementation/` single-entry-point production architecture.
+    - **Student Investigator:** Parth Jivani (Enrolment No: 25001170), Navrachana University.
+    - **Faculty Supervisor:** Dr. Yogesh Chaudhari and Prof. Rupali Shinde, School of Engineering and Technology.
     """
 )
 
@@ -78,16 +77,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True,
-)
-
-st.markdown("---")
-st.subheader("📚 Literature Citations & Scopus/WoS References")
-st.markdown(
-    """
-    1. **Park, Y. et al. (2025).** *Smarter Chains, Safer Medicines: From Predictive Failures to Algorithmic Fixes in Global Pharmaceutical Logistics.* MDPI Forecasting, 7(1), 78.
-    2. **Ghazvinian, A., Feng, B., & Feng, J. (2025).** *Enhancing Efficiency in the Healthcare Sector Through Multi-Objective Optimization of Freight Cost and Delivery Time in the HIV Drug Supply Chain Using Machine Learning.* MDPI Systems, 13(2), 91.
-    3. **Yao, Y. (2010).** *Three-way decisions with probabilistic rough sets.* Information Sciences, 180(3), 341-353.
-    4. **Zhang, C. et al. (2022).** *Research and application of XGBoost in imbalanced data.* International Journal of Distributed Sensor Networks, 18(9).
-    5. **Cao, J. et al. (2024).** *Advanced hybrid LSTM-transformer architecture for real-time multi-task prediction in engineering systems.* Scientific Reports, 14, 18321.
-    """
 )
